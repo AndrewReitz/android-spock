@@ -1,7 +1,7 @@
 ext {
   minSdkVersion = 15
   compileSdkVersion = 21
-  buildToolsVersion = '21.1.1'
+  buildToolsVersion = '21.1.2'
 
   isSnapshot = !project.hasProperty('release')
 }
@@ -14,6 +14,7 @@ subprojects {
   buildscript {
     repositories {
       jcenter()
+      mavenLocal()
     }
 
     dependencies {
@@ -23,7 +24,7 @@ subprojects {
       classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:1.12.3'
       classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
       classpath 'me.champeau.gradle:gradle-groovy-android-plugin:0.3.4'
-      classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.0'
+      //classpath 'com.andrewreitz:spock-android-gradle-plugin:1.0.0-SNAPSHOT'
     }
   }
 

@@ -1,4 +1,3 @@
-apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.library'
 apply plugin: 'me.champeau.gradle.groovy-android'
 
@@ -27,6 +26,7 @@ android {
 
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.0-rc-2:grooid'
+
   compile 'junit:junit-dep:4.11'
 
   compile('org.spockframework:spock-core:0.7-groovy-2.0') {

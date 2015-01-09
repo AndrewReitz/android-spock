@@ -1,6 +1,6 @@
 package com.andrewreitz.spock
 
-import spock.lang.Specification;
+import spock.lang.Specification
 
 class TestSpec extends Specification {
   def "this should run on android!"() {

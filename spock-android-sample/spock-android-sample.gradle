@@ -1,6 +1,6 @@
-apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
 apply plugin: 'me.champeau.gradle.groovy-android'
+//apply plugin: 'com.andrewreitz.android-spock'
 
 repositories {
   mavenLocal()
@@ -24,5 +24,11 @@ android {
 
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.0-rc-2:grooid'
+
+
   androidTestCompile 'com.andrewreitz:spock-android:1.0.0-SNAPSHOT'
+  androidTestCompile 'junit:junit-dep:4.11'
+  androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
+    exclude group: 'org.codehaus.groovy'
+  }
 }
