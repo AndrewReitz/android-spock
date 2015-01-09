@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.champeau.gradle.groovy-android'
 
 android {
   compileSdkVersion project.compileSdkVersion
@@ -18,20 +17,14 @@ android {
     abortOnError false
   }
 
-  packagingOptions {
-    exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
-    exclude 'LICENSE.txt'
-  }
+  //packagingOptions {
+  //  exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
+  //  exclude 'LICENSE.txt'
+  //}
 }
 
 dependencies {
-  compile 'org.codehaus.groovy:groovy:2.4.0-rc-2:grooid'
-
   compile 'junit:junit-dep:4.11'
-
-  compile('org.spockframework:spock-core:0.7-groovy-2.0') {
-    exclude group: 'org.codehaus.groovy'
-  }
 }
 
 apply from: "$rootDir/gradle/android/compile.gradle"
