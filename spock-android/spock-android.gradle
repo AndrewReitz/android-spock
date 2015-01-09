@@ -16,11 +16,6 @@ android {
   lintOptions {
     abortOnError false
   }
-
-  //packagingOptions {
-  //  exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
-  //  exclude 'LICENSE.txt'
-  //}
 }
 
 dependencies {

@@ -1,8 +1,8 @@
-package com.andrewreitz.spock.test
+package com.andrewreitz.spock.example.test
 
 import spock.lang.Specification
 
-class TestSpec extends Specification {
+class AndroidTestSpec extends Specification {
   def "this should run on android!"() {
     given:
     def a = 2
@@ -16,7 +16,7 @@ class TestSpec extends Specification {
   }
 
   def "should fail on android"() {
-    expect
+    expect:
     2 == 1
   }
 }

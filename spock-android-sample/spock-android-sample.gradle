@@ -12,6 +12,8 @@ android {
   defaultConfig {
     minSdkVersion project.minSdkVersion
     targetSdkVersion project.compileSdkVersion
+    versionCode 1
+    versionName project.version
 
     testInstrumentationRunner "com.andrewreitz.spock.test.runner.AndroidSpockRunner"
   }
@@ -32,14 +34,21 @@ android {
   }
 }
 
+android.enforceUniquePackageName = false
 
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.0-rc-2:grooid'
 
   androidTestCompile 'com.andrewreitz:spock-android:1.0.0-SNAPSHOT'
-
   androidTestCompile 'junit:junit-dep:4.11'
   androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
     exclude group: 'org.codehaus.groovy'
+  }
+}
+
+project.androidGroovy {
+  options {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
   }
 }
