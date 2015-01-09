@@ -1,0 +1,6 @@
+apply from: "$rootDir/gradle/compile.gradle"
+
+dependencies {
+    compile localGroovy()
+    compile gradleApi()
+}

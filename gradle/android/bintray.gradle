@@ -1,0 +1,23 @@
+// Handles publication of distributions to Bintray
+
+apply plugin: 'com.jfrog.bintray'
+
+def attr = { String name -> project."$name" }
+
+bintray {
+    user = bintrayUsername
+    key = bintrayKey
+    publications = ['dist']
+    pkg {
+        repo = attr 'project_bintray_repo'
+        userOrg =  attr 'project_bintray_org'
+        name = attr 'name'
+        desc = attr 'project_description'
+        websiteUrl = attr 'project_url'
+        issueTrackerUrl = attr 'project_issues_url'
+        vcsUrl = attr 'project_connection'
+        licenses = [attr('project_licenses')]
+        labels = [attr('project_labels').split(",")]
+        publicDownloadNumbers = true
+    }
+}

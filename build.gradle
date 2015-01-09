@@ -1,0 +1,35 @@
+ext {
+  minSdkVersion = 15
+  compileSdkVersion = 21
+  buildToolsVersion = '21.1.1'
+
+  isSnapshot = !project.hasProperty('release')
+}
+
+allprojects {
+  apply from: "$rootDir/gradle/credentials.gradle"
+}
+
+subprojects {
+  buildscript {
+    repositories {
+      jcenter()
+    }
+
+    dependencies {
+      classpath 'com.android.tools.build:gradle:1.0.0'
+      classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.6'
+      classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:3.0.1'
+      classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:1.12.3'
+      classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+      classpath 'me.champeau.gradle:gradle-groovy-android-plugin:0.3.4'
+      classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.0'
+    }
+  }
+
+  repositories {
+    jcenter()
+  }
+
+  version = "1.0.0${isSnapshot == false ? '' : '-SNAPSHOT'}"
+}

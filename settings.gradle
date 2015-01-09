@@ -1,0 +1,18 @@
+include \
+  "spock-android",
+  "spock-android-gradle-plugin",
+  "spock-android-sample",
+
+rootProject.name = 'android-spock'
+
+def setBuildFile(project) {
+  project.buildFileName = "${project.name}.gradle"
+  project.children.each {
+    setBuildFile(it)
+  }
+}
+
+rootProject.children.each {
+  setBuildFile(it)
+}
+
