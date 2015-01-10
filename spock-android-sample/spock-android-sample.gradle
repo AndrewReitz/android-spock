@@ -15,7 +15,7 @@ android {
     versionCode 1
     versionName project.version
 
-    testInstrumentationRunner "com.andrewreitz.spock.test.runner.AndroidSpockRunner"
+    testInstrumentationRunner "com.andrewreitz.spock.AndroidSpockRunner"
   }
 
   compileOptions {

@@ -1,4 +1,4 @@
-package com.andrewreitz.spock.example.test
+package com.andrewreitz.spock.example
 
 import spock.lang.Specification
 
@@ -13,10 +13,5 @@ class AndroidTestSpec extends Specification {
 
     then:
     result == 5
-  }
-
-  def "should fail on android"() {
-    expect:
-    2 == 1
   }
 }
