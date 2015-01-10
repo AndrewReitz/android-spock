@@ -1,6 +1,5 @@
 include \
   "spock-android",
-  "spock-android-gradle-plugin",
   "spock-android-sample",
 
 rootProject.name = 'android-spock'
