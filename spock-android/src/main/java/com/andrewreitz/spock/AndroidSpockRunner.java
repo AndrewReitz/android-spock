@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.andrewreitz.spock.test.runner;
+package com.andrewreitz.spock;
 
 import android.app.Activity;
 import android.app.Application;
