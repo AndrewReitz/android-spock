@@ -23,16 +23,29 @@ android {
     exclude 'LICENSE.txt'
   }
 
+  buildTypes {
+    debug {
+      minifyEnabled true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+    }
+    release {
+      minifyEnabled true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+    }
+  }
+
   dexOptions {
     incremental true
-    javaMaxHeapSize "1500M"
+    javaMaxHeapSize "1G"
   }
 }
 
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.0-rc-2:grooid'
 
-  androidTestCompile project(':spock-android')
+  androidTestCompile(project(':spock-android')) {
+    exclude group: 'junit'
+  }
   androidTestCompile 'junit:junit-dep:4.11'
   androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
     exclude group: 'org.codehaus.groovy'

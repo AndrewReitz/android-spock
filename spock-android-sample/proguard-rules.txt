@@ -1,0 +1,55 @@
+-dontobfuscate
+-dontoptimize
+-dontpreverify
+
+-dontskipnonpubliclibraryclasses
+-verbose
+-ignorewarnings
+
+-keep class org.codehaus.groovy.vmplugin.**
+-keep class org.codehaus.groovy.runtime.dgm*
+-keep class org.codehaus.groovy.util.**
+-keepclassmembers class org.codehaus.groovy.util.** {
+  *;
+}
+-keepclassmembers class org.codehaus.groovy.runtime.dgm* {
+  *;
+}
+-keepclassmembers class ** implements org.codehaus.groovy.runtime.GeneratedClosure {
+  *;
+}
+-dontwarn org.codehaus.groovy.**
+-dontwarn groovy**
+
+-keep class spock.**
+-keepclassmembers class spock.** {
+  *;
+}
+-keepclassmembers class org.spockframework.** {
+  *;
+}
+
+-keepclassmembers class org.objenesis.** {
+  *;
+}
+
+-dontwarn org.spockframework.**
+
+-keep class com.andrewreitz.**
+-keepclassmembers class com.andrewreitz.** {
+  *;
+}
+
+-keepclassmembers class ** extends spock.lang.Specification {
+  *;
+}
+
+-keep class org.junit.**
+-keepclassmembers class org.junit.** {
+  *;
+}
+
+-keep class junit
+-keepclassmembers class junit.** {
+  *;
+}
