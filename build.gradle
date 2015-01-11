@@ -1,3 +1,6 @@
+import groovyx.net.http.ContentType
+import org._10ne.gradle.rest.RestTask
+
 ext {
   minSdkVersion = 15
   compileSdkVersion = 21
@@ -6,28 +9,39 @@ ext {
   isSnapshot = !project.hasProperty('release')
 }
 
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:1.0.0'
+    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.6'
+    classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:3.0.1'
+    classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:1.12.3'
+    classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+    classpath 'me.champeau.gradle:gradle-groovy-android-plugin:0.3.4'
+    classpath 'org._10ne.gradle:rest-gradle-plugin:0.3.1'
+  }
+}
+
 allprojects {
   version = "1.0.0${isSnapshot == false ? '' : '-SNAPSHOT'}"
   group = "com.andrewreitz"
-}
-
-subprojects {
-  buildscript {
-    repositories {
-      jcenter()
-    }
-
-    dependencies {
-      classpath 'com.android.tools.build:gradle:1.0.0'
-      classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.6'
-      classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:3.0.1'
-      classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:1.12.3'
-      classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
-      classpath 'me.champeau.gradle:gradle-groovy-android-plugin:0.3.4'
-    }
-  }
 
   repositories {
     jcenter()
   }
+}
+
+apply plugin: "org.10ne.rest"
+
+task bintraySign(type: RestTask) {
+  description = "Sign the release build on bintray"
+  httpMethod = "post"
+  uri = "https://api.bintray.com/gpg/pieces/maven/spock-android/versions/${version}"
+  username = bintrayUsername
+  password = bintrayKey
+  requestBody = [passphrase: signingPassword]
+  contentType = ContentType.JSON
 }
