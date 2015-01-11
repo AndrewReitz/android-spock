@@ -7,16 +7,14 @@ ext {
 }
 
 allprojects {
-  apply from: "$rootDir/gradle/credentials.gradle"
+  version = "1.0.0${isSnapshot == false ? '' : '-SNAPSHOT'}"
+  group = "com.andrewreitz"
 }
 
 subprojects {
   buildscript {
     repositories {
       jcenter()
-      maven {
-        url = 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
-      }
     }
 
     dependencies {
@@ -25,14 +23,11 @@ subprojects {
       classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:3.0.1'
       classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:1.12.3'
       classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
-      classpath 'me.champeau.gradle:gradle-groovy-android-plugin:0.3.5-SNAPSHOT'
+      classpath 'me.champeau.gradle:gradle-groovy-android-plugin:0.3.4'
     }
   }
 
   repositories {
     jcenter()
   }
-
-  version = "1.0.0${isSnapshot == false ? '' : '-SNAPSHOT'}"
-  group = "com.andrewreitz"
 }

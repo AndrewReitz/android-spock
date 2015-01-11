@@ -2,15 +2,22 @@
 
 apply plugin: 'com.jfrog.bintray'
 
+def attr = { String name -> project."$name" }
+
 bintray {
     user = bintrayUsername
     key = bintrayKey
-    publications = ['mavenJava']
+    publications = ['dist']
     pkg {
-        repo = 'gradle-plugins'
-        name = 'android-spock-gradle-plugin'
-        desc = 'Spock on Android'
-        licenses = ['MIT']
-        labels = []
+        repo = attr 'project_bintray_repo'
+        userOrg =  attr 'project_bintray_org'
+        name = attr 'name'
+        desc = attr 'project_description'
+        websiteUrl = attr 'project_url'
+        issueTrackerUrl = attr 'project_issues_url'
+        vcsUrl = attr 'project_connection'
+        licenses = [attr('project_licenses')]
+        labels = [attr('project_labels').split(",")]
+        publicDownloadNumbers = true
     }
 }

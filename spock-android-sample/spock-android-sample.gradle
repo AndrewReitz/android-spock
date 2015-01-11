@@ -18,18 +18,11 @@ android {
     testInstrumentationRunner "com.andrewreitz.spock.AndroidSpockRunner"
   }
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_7
-    targetCompatibility JavaVersion.VERSION_1_7
-  }
-
   packagingOptions {
     exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
     exclude 'LICENSE.txt'
   }
 }
-
-android.enforceUniquePackageName = false
 
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.0-rc-2:grooid'
@@ -38,12 +31,5 @@ dependencies {
   androidTestCompile 'junit:junit-dep:4.11'
   androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
     exclude group: 'org.codehaus.groovy'
-  }
-}
-
-project.androidGroovy {
-  options {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
   }
 }

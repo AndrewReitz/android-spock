@@ -3,20 +3,22 @@
 apply plugin: 'com.jfrog.artifactory'
 
 artifactory {
+  contextUrl = 'http://oss.jfrog.org/artifactory'
+  publish {
     contextUrl = 'http://oss.jfrog.org/artifactory'
-    publish {
-        repository {
-            repoKey = 'oss-snapshot-local'
-            username = bintrayUsername
-            password = bintrayKey
-        }
-        defaults {
-            publications ('mavenJava')
-        }
+    repository {
+      repoKey = 'oss-snapshot-local'
+      username = bintrayUsername
+      password = bintrayKey
     }
-    resolve {
-        repository {
-            repoKey = 'libs-release'
-        }
+    defaults {
+      publications('dist')
     }
+  }
+  resolve {
+    contextUrl = 'http://oss.jfrog.org/artifactory'
+    repository {
+      repoKey = 'libs-release'
+    }
+  }
 }

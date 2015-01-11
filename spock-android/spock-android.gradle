@@ -32,7 +32,8 @@ tasks.withType(Javadoc) {
   exclude "**/package.html"
 }
 
-apply from: "$rootDir/gradle/android/compile.gradle"
-apply from: "$rootDir/gradle/android/publishing.gradle"
-apply from: "$rootDir/gradle/android/bintray.gradle"
-apply from: "$rootDir/gradle/android/artifactory.gradle"
+apply from: "$rootDir/gradle/credentials.gradle"
+apply from: "$rootDir/gradle/compile.gradle"
+apply from: "$rootDir/gradle/publishing.gradle"
+apply from: "$rootDir/gradle/bintray.gradle"
+apply from: "$rootDir/gradle/artifactory.gradle"

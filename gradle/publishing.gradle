@@ -3,54 +3,49 @@ apply plugin: 'maven-publish'
 
 // add javadoc/source jar tasks as artifacts
 artifacts {
-    archives sourcesJar, javadocJar
+  archives androidSourcesJar, androidJavadocsJar
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
+  publications {
+    dist(MavenPublication) {
+      groupId project.group
+      artifactId project.name
+      version project.version
+      artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+      artifact androidJavadocsJar {
+        classifier 'source'
+      }
+      artifact androidSourcesJar {
+        classifier 'javadoc'
+      }
 
-            artifact sourcesJar {
-                classifier "sources"
-            }
+      pom.withXml {
+        def Node root = asNode()
+        root.appendNode('name', project.name)
+        root.appendNode('description', project.project_description)
+        root.appendNode('url', project.project_url)
 
-            artifact javadocJar {
-                classifier "javadoc"
-            }
+        def issues = root.appendNode('issueManagement')
+        issues.appendNode('system', 'github')
+        issues.appendNode('url', project.project_issues_url)
 
-            pom.withXml {
-                def Node root = asNode()
-                /*
+        def scm = root.appendNode('scm')
+        scm.appendNode('url', project.project_scm)
+        scm.appendNode('connection', project.project_connection)
+        scm.appendNode('developerConnection', project.project_dev_connection)
 
-                        UNCOMMENT THIS BLOCK IF YOU WANT TO CUSTOMIZE THE GENERATED pom.xml FILE
+        def license = root.appendNode('licenses').appendNode('license');
+        license.appendNode('name', project.project_licenses)
+        license.appendNode('url', project.project_license_url)
+        license.appendNode('distribution', 'repo')
 
-                root.appendNode('name', 'Gradle Plugin for Antlr4')
-                root.appendNode('description', 'Gradle plugin for generating grammars with Antlr4')
-                root.appendNode('url', 'https://github.com/melix/antlr4-gradle-plugin')
-
-                def issues = root.appendNode( 'issueManagement' )
-                issues.appendNode( 'system', 'github' )
-                issues.appendNode( 'url', 'https://github.com/melix/antlr4-gradle-plugin/issues' )
-
-                def scm = root.appendNode( 'scm' )
-                scm.appendNode( 'url', 'https://github.com/melix/antlr4-gradle-plugin' )
-                scm.appendNode( 'connection', 'scm:git:https://github.com/melix/antlr4-gradle-plugin.git' )
-                scm.appendNode( 'developerConnection', 'scm:git:git@github.com:melix/antlr4-gradle-plugin.git' )
-
-                def license = root.appendNode( 'licenses' ).appendNode( 'license' );
-                license.appendNode( 'name', 'The Apache Software License, Version 2.0' )
-                license.appendNode( 'url', 'http://www.apache.org/licenses/LICENSE-2.0.txt' )
-                license.appendNode( 'distribution', 'repo' )
-
-                def dev = root.appendNode( 'developers' ).appendNode( 'developer' );
-                dev.appendNode( 'id', 'melix' )
-                dev.appendNode( 'name', 'Cédric Champeau' )
-                dev.appendNode( 'organization', 'Groovy' )
-                dev.appendNode( 'organizationUrl', 'http://groovy.codehaus.org' )
-
-                 */
-            }
-        }
+        def dev = root.appendNode('developers').appendNode('developer');
+        dev.appendNode('id', project.project_vendor)
+        dev.appendNode('name', project.project_vendor_name)
+        dev.appendNode('organization', project.project_vendor_name)
+        dev.appendNode('organizationUrl', project.project_vendor_url)
+      }
     }
+  }
 }
