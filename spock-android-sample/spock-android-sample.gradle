@@ -27,11 +27,6 @@ android {
     exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
     exclude 'LICENSE.txt'
   }
-
-  dexOptions {
-    incremental false
-    javaMaxHeapSize "2g"
-  }
 }
 
 android.enforceUniquePackageName = false
