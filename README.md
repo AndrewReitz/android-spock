@@ -1,5 +1,7 @@
 # Spock for Android
 
+[![Build Status](https://snap-ci.com/pieces029/android-spock/branch/master/build_image)](https://snap-ci.com/pieces029/android-spock/branch/master)
+
 ## Usage
 
 ### Setup Groovy For Android
