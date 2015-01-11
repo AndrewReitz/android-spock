@@ -32,6 +32,8 @@ allprojects {
   repositories {
     jcenter()
   }
+
+  apply from: "$rootDir/gradle/credentials.gradle"
 }
 
 apply plugin: "org.10ne.rest"
