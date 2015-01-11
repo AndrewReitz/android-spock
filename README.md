@@ -3,6 +3,8 @@
 [![Build Status](https://snap-ci.com/pieces029/android-spock/branch/master/build_image)](https://snap-ci.com/pieces029/android-spock/branch/master)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Spock%20for%20Android-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1345)
 
+This library allows for the [Spock Framework](//spockframework.org) to be run on Android.
+
 ## Usage
 
 ### Setup Groovy For Android
