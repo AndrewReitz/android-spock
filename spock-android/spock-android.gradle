@@ -28,6 +28,10 @@ dependencies {
   compile 'junit:junit-dep:4.11'
 }
 
+tasks.withType(Javadoc) {
+  exclude "**/package.html"
+}
+
 apply from: "$rootDir/gradle/android/compile.gradle"
 apply from: "$rootDir/gradle/android/publishing.gradle"
 apply from: "$rootDir/gradle/android/bintray.gradle"
