@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.champeau.gradle.groovy-android'
+apply plugin: 'groovyx.grooid.groovy-android'
 
 repositories {
-  mavenLocal()
+  jcenter()
+  maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
 }
 
 android {
@@ -34,20 +35,33 @@ android {
     }
   }
 
+  // in order to bring memory usage down on CI
   dexOptions {
-    incremental true
-    javaMaxHeapSize "1G"
+    incremental false
+    javaMaxHeapSize "2G"
+  }
+
+  lintOptions {
+    abortOnError false
   }
 }
 
-dependencies {
-  compile 'org.codehaus.groovy:groovy:2.4.0-rc-2:grooid'
+// Used for forcing to get the latest snapshot of spock-android very build
+configurations.all {
+  resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
 
-  androidTestCompile(project(':spock-android')) {
-    exclude group: 'junit'
-  }
+dependencies {
+  compile 'org.codehaus.groovy:groovy:2.4.0:grooid'
+
+  androidTestCompile "com.andrewreitz:spock-android:$project.version"
   androidTestCompile 'junit:junit-dep:4.11'
   androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
     exclude group: 'org.codehaus.groovy'
+    exclude group: 'junit'
   }
+  androidTestCompile('com.android.support.test:testing-support-lib:0.1') {
+    exclude group: 'junit'
+  }
+  androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
 }

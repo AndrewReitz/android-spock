@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'groovyx.grooid.groovy-android'
 
 android {
   compileSdkVersion project.compileSdkVersion
@@ -6,6 +7,11 @@ android {
 
   defaultConfig {
     minSdkVersion project.minSdkVersion
+    targetSdkVersion project.compileSdkVersion
+    versionCode 1
+    versionName project.version
+
+    testInstrumentationRunner "com.andrewreitz.spock.AndroidSpockRunner"
   }
 
   compileOptions {
@@ -18,18 +24,38 @@ android {
   }
 
   packagingOptions {
+    exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
     exclude 'LICENSE.txt'
   }
 
-  sourceSets.main.java.srcDirs += "$rootDir/testing/support/src"
+  // Android plugin is doing something after the fact to remove this so add it back
+  sourceSets {
+    androidTest.java.srcDir 'src/androidTest/groovy'
+  }
+
+  dexOptions {
+    preDexLibraries false
+    incremental false
+    javaMaxHeapSize "2G"
+  }
 }
 
 dependencies {
-  compile 'junit:junit-dep:4.11'
-}
+  compile 'org.codehaus.groovy:groovy:2.4.0:grooid'
 
-tasks.withType(Javadoc) {
-  exclude "**/package.html"
+  compile 'junit:junit-dep:4.11'
+
+  compile('com.android.support.test:testing-support-lib:0.1') {
+    exclude group: 'junit'
+  }
+
+  compile('org.spockframework:spock-core:0.7-groovy-2.0') {
+    exclude group: 'org.codehaus.groovy'
+    exclude group: 'junit'
+  }
+
+  compile 'com.google.dexmaker:dexmaker:1.2'
+  compile 'com.android.support:multidex:1.0.0'
 }
 
 apply from: "$rootDir/gradle/compile.gradle"

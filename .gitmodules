@@ -1,3 +1,0 @@
-[submodule "testing"]
-	path = testing
-	url = https://android.googlesource.com/platform/frameworks/testing/

@@ -24,6 +24,7 @@ import android.support.test.internal.runner.ClassPathScanner.ChainedClassNameFil
 import android.support.test.internal.runner.ClassPathScanner.ExcludePackageNameFilter;
 import android.support.test.internal.runner.ClassPathScanner.ExternalClassNameFilter;
 import android.support.test.internal.runner.ClassPathScanner.InclusivePackageNameFilter;
+import android.support.test.internal.util.AndroidRunnerParams;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
@@ -39,6 +40,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import org.junit.runner.Computer;
 import org.junit.runner.Description;
@@ -586,7 +588,9 @@ public class SpockTestRequestBuilder {
     private static Request classes(Instrumentation instr, Bundle bundle, boolean skipExecution,
             Computer computer, Class<?>... classes) {
         try {
-            AndroidRunnerBuilder builder = new AndroidRunnerBuilder(instr, bundle, skipExecution);
+            AndroidRunnerParams params = new AndroidRunnerParams(instr, bundle, skipExecution,
+                TimeUnit.MINUTES.toMillis(10));
+            AndroidRunnerBuilder builder = new AndroidRunnerBuilder(params);
             Runner suite = computer.getSuite(builder, classes);
             return Request.runner(suite);
         } catch (InitializationError e) {
