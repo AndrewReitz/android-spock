@@ -4,17 +4,18 @@
 
 -ignorewarnings
 
--keep class **.R$*
+-keep class com.example.spock.**
+
+-keepclassmembers class com.example.spock.** {
+  *;
+}
 
 -keep class org.codehaus.groovy.vmplugin.**
 -keep class org.codehaus.groovy.runtime.dgm*
 -keep class org.codehaus.groovy.util.**
 -keep class org.codehaus.groovy.runtime.**
 -keep class org.codehaus.groovy.reflection.**
-
--keepclassmembers class * extends android.app.Activity {
-  *;
-}
+-keep class org.codehaus.groovy.control.**
 
 -keepclassmembers class org.codehaus.groovy.util.** {
   *;
@@ -29,6 +30,10 @@
   *;
 }
 -keepclassmembers class org.codehaus.groovy.reflection.** {
+  *;
+}
+
+-keepclassmembers class org.codehaus.groovy.control.SourceUnit {
   *;
 }
 

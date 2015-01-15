@@ -22,7 +22,7 @@ buildscript {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'me.champeau.gradle.groovy-android'
+apply plugin: 'groovyx.grooid.groovy-android'
 ```
 
 See [groovy-android-gradle-plugin](//github.com/melix/groovy-android-gradle-plugin/) for more
@@ -33,12 +33,20 @@ details.
 ```groovy
 dependencies {
   ...
-  androidTestCompile 'org.codehaus.groovy:groovy:2.4.0-rc-2:grooid'
-  androidTestCompile 'com.andrewreitz:spock-android:1.0.0'
+  androidTestCompile 'org.codehaus.groovy:groovy:2.4.0:grooid'
+  androidTestCompile "com.andrewreitz:spock-android:${androidSpockVersion}"
   androidTestCompile 'junit:junit-dep:4.11'
   androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
     exclude group: 'org.codehaus.groovy'
+    exclude group: 'junit'
   }
+  androidTestCompile('com.android.support.test:testing-support-lib:0.1') {
+    exclude group: 'junit'
+  }
+
+  // For mocking (Android does not support mocks used by Spock)
+  androidTestCompile "org.mockito:mockito-core:1.10.19"
+  androidTestCompile "com.google.dexmaker:dexmaker-mockito:1.2"
   ...
 }
 ```
@@ -67,4 +75,12 @@ Tests must be placed in the `./src/androidTest/groovy` directory.
 
 Write your tests like you would regular spock tests. See the spock-android-sample project and
 [Spock Framework](//spockframework.org) for more details.
+
+### Notes
+
+Can not mock automatic getters and setters
+
+example mocked.getString() will work where as mocked.string will not.
+
+This is due to limitations of Android not containing certain core java classes.
 

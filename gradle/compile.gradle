@@ -2,6 +2,9 @@
 task androidJavadocs(type: Javadoc) {
   source = android.sourceSets.main.java.srcDirs
   classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+  exclude '**/BuildConfig.java'
+  exclude '**/R.java'
+  exclude '**/*.groovy'
 }
 
 task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
