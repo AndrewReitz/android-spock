@@ -20,16 +20,11 @@ android {
   packagingOptions {
     exclude 'LICENSE.txt'
   }
-
-  sourceSets.main.java.srcDirs += "$rootDir/testing/support/src"
 }
 
 dependencies {
   compile 'junit:junit-dep:4.11'
-}
-
-tasks.withType(Javadoc) {
-  exclude "**/package.html"
+  compile 'com.android.support.test:testing-support-lib:0.1'
 }
 
 apply from: "$rootDir/gradle/compile.gradle"
