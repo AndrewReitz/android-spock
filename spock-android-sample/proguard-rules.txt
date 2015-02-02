@@ -2,7 +2,6 @@
 -dontoptimize
 -dontpreverify
 
-#-verbose
 -ignorewarnings
 
 -keep class org.codehaus.groovy.vmplugin.**
@@ -10,6 +9,10 @@
 -keep class org.codehaus.groovy.util.**
 -keep class org.codehaus.groovy.runtime.**
 -keep class org.codehaus.groovy.reflection.**
+
+-keepclassmembers class * extends android.app.Activity {
+  *;
+}
 
 -keepclassmembers class org.codehaus.groovy.util.** {
   *;

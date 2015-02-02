@@ -1,10 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.champeau.gradle.groovy-android'
 
-repositories {
-  mavenLocal()
-}
-
 android {
   compileSdkVersion project.compileSdkVersion
   buildToolsVersion project.buildToolsVersion
@@ -25,7 +21,7 @@ android {
 
   buildTypes {
     debug {
-      minifyEnabled true
+      minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
     }
     release {
@@ -35,7 +31,7 @@ android {
   }
 
   dexOptions {
-    incremental true
+    incremental false
     javaMaxHeapSize "2G"
   }
 }
@@ -44,10 +40,6 @@ dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.0:grooid'
 
   androidTestCompile(project(':spock-android')) {
-    exclude group: 'junit'
-  }
-  androidTestCompile 'junit:junit:4.11'
-  androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.3-SNAPSHOT') {
     exclude group: 'org.codehaus.groovy'
   }
 }
