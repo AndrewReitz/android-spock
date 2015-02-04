@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.champeau.gradle.groovy-android'
+apply plugin: 'groovyx.grooid.groovy-android'
 
 android {
   compileSdkVersion project.compileSdkVersion

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.champeau.gradle.groovy-android'
 
 android {
   compileSdkVersion project.compileSdkVersion
@@ -26,10 +25,11 @@ android {
 
 dependencies {
   compile 'junit:junit-dep:4.11'
+
   compile('com.android.support.test:testing-support-lib:0.1') {
     exclude group: 'junit'
   }
-  compile 'org.codehaus.groovy:groovy:2.4.0:grooid'
+
   compile('org.spockframework:spock-core:0.7-groovy-2.0') {
     exclude group: 'org.codehaus.groovy'
     exclude group: 'junit'
