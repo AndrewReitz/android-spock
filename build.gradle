@@ -3,7 +3,7 @@ import org._10ne.gradle.rest.RestTask
 
 ext {
   minSdkVersion = 15
-  compileSdkVersion = 19
+  compileSdkVersion = 21
   buildToolsVersion = '21.1.2'
 
   isSnapshot = !project.hasProperty('release')
