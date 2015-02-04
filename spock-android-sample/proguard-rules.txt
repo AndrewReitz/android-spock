@@ -4,6 +4,8 @@
 
 -ignorewarnings
 
+-keep class **.R$*
+
 -keep class org.codehaus.groovy.vmplugin.**
 -keep class org.codehaus.groovy.runtime.dgm*
 -keep class org.codehaus.groovy.util.**
