@@ -22,7 +22,7 @@ buildscript {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'me.champeau.gradle.groovy-android'
+apply plugin: 'groovyx.grooid.groovy-android'
 ```
 
 See [groovy-android-gradle-plugin](//github.com/melix/groovy-android-gradle-plugin/) for more
