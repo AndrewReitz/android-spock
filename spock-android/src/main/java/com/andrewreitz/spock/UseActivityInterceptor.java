@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
+import android.test.ActivityUnitTestCase;
 import org.spockframework.runtime.extension.AbstractMethodInterceptor;
 import org.spockframework.runtime.extension.IMethodInvocation;
 import org.spockframework.runtime.model.FieldInfo;
@@ -33,7 +34,9 @@ public class UseActivityInterceptor extends AbstractMethodInterceptor {
   private final FieldInfo fieldInfo;
   private final Class<? extends Activity> activityClass;
   private final Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
+
   private Activity activity;
+  private BundleCreator bundleCreator;
 
   /**
    * Constructor
@@ -42,10 +45,14 @@ public class UseActivityInterceptor extends AbstractMethodInterceptor {
    * @param activityClass The activity class type that should be created and set the annotated
    * field
    * to.
+   * @param bundleCreator The bundle creator that will be used to pass a bundle to the started
+   * activity.
    */
-  public UseActivityInterceptor(FieldInfo fieldInfo, Class<? extends Activity> activityClass) {
+  public UseActivityInterceptor(FieldInfo fieldInfo, Class<? extends Activity> activityClass,
+      BundleCreator bundleCreator) {
     this.fieldInfo = fieldInfo;
     this.activityClass = activityClass;
+    this.bundleCreator = bundleCreator;
   }
 
   @Override public void interceptSetupMethod(IMethodInvocation invocation) throws Throwable {
@@ -58,13 +65,15 @@ public class UseActivityInterceptor extends AbstractMethodInterceptor {
    *
    * @param targetPackage The package of the Activity.
    * @param activityClass The Activity class send the intent to.
+   * @param bundleCreator Bundle creator instance that will give a bundle to the activity.
    * @param <T> The specific Activity type.
    * @return The intent to start the activity.
    */
   protected <T extends Activity> Intent getLaunchIntent(String targetPackage,
-      Class<T> activityClass) {
+      Class<T> activityClass, BundleCreator bundleCreator) {
     Intent intent = new Intent(Intent.ACTION_MAIN);
     intent.setClassName(targetPackage, activityClass.getName());
+    intent.putExtras(bundleCreator.createBundle());
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     return intent;
   }
@@ -78,11 +87,12 @@ public class UseActivityInterceptor extends AbstractMethodInterceptor {
   }
 
   /** Launch the activity if it has not be started. */
-  @SuppressWarnings("unchecked") private void launchActivity() {
+  @SuppressWarnings("unchecked")
+  private void launchActivity() {
     if (activity != null) return;
 
     String targetPackage = instrumentation.getTargetContext().getPackageName();
-    Intent intent = getLaunchIntent(targetPackage, activityClass);
+    Intent intent = getLaunchIntent(targetPackage, activityClass, bundleCreator);
 
     activity = instrumentation.startActivitySync(intent);
     instrumentation.waitForIdleSync();

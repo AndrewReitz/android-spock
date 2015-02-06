@@ -16,6 +16,8 @@
 package com.andrewreitz.spock;
 
 import android.app.Activity;
+import android.os.Bundle;
+import java.util.Map;
 import org.spockframework.runtime.extension.ExtensionAnnotation;
 
 import java.lang.annotation.ElementType;
@@ -38,4 +40,10 @@ public @interface UseActivity {
    * @return Provide the specific {@link Activity} type to be created for the test.
    */
   Class<? extends Activity> value();
+
+  /**
+   * @return A BundleCreator that will create and pass a bundle to the Activity that is being
+   * created for testing.
+   */
+  Class<? extends BundleCreator> bundleCreator() default EmptyBundleCreator.class;
 }

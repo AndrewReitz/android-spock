@@ -27,7 +27,27 @@ import org.spockframework.runtime.model.FieldInfo;
  */
 public class UseActivityExtension extends AbstractAnnotationDrivenExtension<UseActivity> {
   @Override public void visitFieldAnnotation(UseActivity annotation, FieldInfo field) {
-    UseActivityInterceptor activityInterceptor = new UseActivityInterceptor(field, annotation.value());
+
+    BundleCreator bundleCreator = instanciateBundleCreator(annotation.bundleCreator());
+
+    UseActivityInterceptor activityInterceptor =
+        new UseActivityInterceptor(field, annotation.value(), bundleCreator);
     field.getParent().getSetupMethod().addInterceptor(activityInterceptor);
+  }
+
+  private BundleCreator instanciateBundleCreator(
+      Class<? extends BundleCreator> bundleCreatorClass) {
+    BundleCreator bundleCreator;
+    try {
+      bundleCreator = bundleCreatorClass.newInstance();
+    } catch (InstantiationException e) {
+      throw new RuntimeException(
+          "Can not instantiate BundleCreator, make sure there is an empty public constructor.", e);
+    } catch (IllegalAccessException e) {
+      throw new RuntimeException(
+          "Can not instantiate BundleCreator, make sure there is an empty public constructor.", e);
+    }
+
+    return bundleCreator;
   }
 }

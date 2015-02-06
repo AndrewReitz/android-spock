@@ -7,7 +7,12 @@
       android:label="Spock Tests"
       >
     <activity
-        android:name=".TestActivity"
+        android:name=".SimpleTestActivity"
+        android:label="TestActivity"
+        />
+
+    <activity
+        android:name=".ArgumentsTestActivity"
         android:label="TestActivity"
         />
   </application>
