@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.andrewreitz.spock.example
+package com.example.spock
 
 import spock.lang.Specification
 
 class AndroidTestSpec extends Specification {
-  def "this should run on android!"() {
+  def "this should run on Android!"() {
     given:
     def a = 2
     def b = 3

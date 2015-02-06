@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'groovyx.grooid.groovy-android'
 
+repositories {
+  mavenLocal()
+  jcenter()
+  maven { url = 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+}
+
 android {
   compileSdkVersion project.compileSdkVersion
   buildToolsVersion project.buildToolsVersion
@@ -30,6 +36,7 @@ android {
     }
   }
 
+  // in order to bring memory usage down on CI
   dexOptions {
     incremental false
     javaMaxHeapSize "2G"
@@ -39,7 +46,16 @@ android {
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.0:grooid'
 
-  androidTestCompile(project(':spock-android')) {
+  androidTestCompile 'com.andrewreitz:spock-android:1.1.0-SNAPSHOT'
+  androidTestCompile 'junit:junit-dep:4.11'
+  androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
     exclude group: 'org.codehaus.groovy'
+    exclude group: 'junit'
   }
+  androidTestCompile('com.android.support.test:testing-support-lib:0.1') {
+    exclude group: 'junit'
+  }
+
+  androidTestCompile "org.mockito:mockito-core:1.10.19"
+  androidTestCompile "com.google.dexmaker:dexmaker-mockito:1.2"
 }

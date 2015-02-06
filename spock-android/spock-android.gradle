@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'groovyx.grooid.groovy-android'
 
 android {
   compileSdkVersion project.compileSdkVersion
@@ -6,6 +7,11 @@ android {
 
   defaultConfig {
     minSdkVersion project.minSdkVersion
+    targetSdkVersion project.compileSdkVersion
+    versionCode 1
+    versionName project.version
+
+    testInstrumentationRunner "com.andrewreitz.spock.AndroidSpockRunner"
   }
 
   compileOptions {
@@ -21,9 +27,22 @@ android {
     exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
     exclude 'LICENSE.txt'
   }
+
+  // Android plugin is doing something after the fact to remove this so add it back
+  sourceSets {
+    androidTest.java.srcDir 'src/androidTest/groovy'
+  }
+
+  dexOptions {
+    preDexLibraries false
+    incremental false
+    javaMaxHeapSize "2G"
+  }
 }
 
 dependencies {
+  compile 'org.codehaus.groovy:groovy:2.4.0:grooid'
+
   compile 'junit:junit-dep:4.11'
 
   compile('com.android.support.test:testing-support-lib:0.1') {

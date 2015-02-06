@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.andrewreitz.spock.example
+package com.example.spock
 
 import android.widget.Button
 import com.andrewreitz.spock.UseActivity

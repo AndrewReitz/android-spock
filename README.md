@@ -33,12 +33,20 @@ details.
 ```groovy
 dependencies {
   ...
-  androidTestCompile 'org.codehaus.groovy:groovy:2.4.0-rc-2:grooid'
-  androidTestCompile 'com.andrewreitz:spock-android:1.0.0'
+  androidTestCompile 'org.codehaus.groovy:groovy:2.4.0:grooid'
+  androidTestCompile "com.andrewreitz:spock-android:${androidSpockVersion}"
   androidTestCompile 'junit:junit-dep:4.11'
   androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
     exclude group: 'org.codehaus.groovy'
+    exclude group: 'junit'
   }
+  androidTestCompile('com.android.support.test:testing-support-lib:0.1') {
+    exclude group: 'junit'
+  }
+
+  // For mocking (Android does not support mocks used by Spock)
+  androidTestCompile "org.mockito:mockito-core:1.10.19"
+  androidTestCompile "com.google.dexmaker:dexmaker-mockito:1.2"
   ...
 }
 ```

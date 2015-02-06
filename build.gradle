@@ -26,7 +26,6 @@ allprojects {
 
   repositories {
     jcenter()
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
   }
 
   apply from: "$rootDir/gradle/credentials.gradle"
