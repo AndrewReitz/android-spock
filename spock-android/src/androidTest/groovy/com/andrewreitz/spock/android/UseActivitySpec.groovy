@@ -1,6 +1,6 @@
-package com.andrewreitz.spock
+package com.andrewreitz.spock.android
 
-import android.os.Bundle;
+import android.os.Bundle
 import spock.lang.Specification;
 
 class UseActivitySpec extends Specification {

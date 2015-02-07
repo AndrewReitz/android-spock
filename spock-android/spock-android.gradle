@@ -58,6 +58,8 @@ dependencies {
     exclude group: 'org.codehaus.groovy'
     exclude group: 'junit'
   }
+
+  compile 'cglib:cglib-nodep:3.1'
 }
 
 apply from: "$rootDir/gradle/compile.gradle"

@@ -16,7 +16,7 @@
 package com.example.spock
 
 import android.widget.Button
-import com.andrewreitz.spock.UseActivity
+import com.andrewreitz.spock.android.UseActivity
 import spock.lang.Specification
 
 class MainActivitySpec extends Specification {

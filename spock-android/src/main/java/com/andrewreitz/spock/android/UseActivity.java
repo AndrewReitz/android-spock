@@ -13,11 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.andrewreitz.spock;
+package com.andrewreitz.spock.android;
 
 import android.app.Activity;
-import android.os.Bundle;
-import java.util.Map;
 import org.spockframework.runtime.extension.ExtensionAnnotation;
 
 import java.lang.annotation.ElementType;

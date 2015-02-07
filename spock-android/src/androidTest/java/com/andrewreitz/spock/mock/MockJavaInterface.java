@@ -1,7 +1,7 @@
-package com.andrewreitz.spock;
+package com.andrewreitz.spock.mock;
 
 /** Interface for testing mocks on Android. */
-public interface MockInterfafce {
+public interface MockJavaInterface {
   String getString();
   int getInt();
   boolean getBoolean();

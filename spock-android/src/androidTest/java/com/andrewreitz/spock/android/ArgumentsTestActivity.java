@@ -1,7 +1,8 @@
-package com.andrewreitz.spock;
+package com.andrewreitz.spock.android;
 
 import android.app.Activity;
 import android.os.Bundle;
+import com.andrewreitz.spock.R;
 
 /**
  * Activity that takes in intent values.
