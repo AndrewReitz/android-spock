@@ -40,6 +40,11 @@ android {
   }
 }
 
+tasks.withType(com.android.build.gradle.tasks.Dex) {
+  // In order to include Introspector implementation
+  additionalParameters=['--core-library']
+}
+
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.0:grooid'
 

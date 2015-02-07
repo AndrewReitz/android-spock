@@ -47,6 +47,11 @@ android {
   }
 }
 
+// Used for forcing to get the latest snapshot of spock-android very build
+configurations.all {
+  resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.0:grooid'
 
@@ -62,4 +67,9 @@ dependencies {
 
   androidTestCompile "org.mockito:mockito-core:1.10.19"
   androidTestCompile "com.google.dexmaker:dexmaker-mockito:1.2"
+}
+
+// Must have for Android Spock to work since there are a few implementation of java classes.
+tasks.withType(com.android.build.gradle.tasks.Dex) {
+  additionalParameters=['--core-library']
 }
