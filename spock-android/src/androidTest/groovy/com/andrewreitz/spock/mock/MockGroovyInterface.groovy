@@ -5,4 +5,5 @@ interface MockGroovyInterface {
   String getString()
   int getInt()
   boolean getBoolean()
+  void doStuff()
 }

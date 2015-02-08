@@ -13,4 +13,8 @@ public class MockJavaConcrete implements MockJavaInterface {
   @Override public boolean getBoolean() {
     throw new UnsupportedOperationException("Stub");
   }
+
+  @Override public void doStuff() {
+    throw new UnsupportedOperationException("Stub");
+  }
 }

@@ -76,3 +76,11 @@ Tests must be placed in the `./src/androidTest/groovy` directory.
 Write your tests like you would regular spock tests. See the spock-android-sample project and
 [Spock Framework](//spockframework.org) for more details.
 
+### Notes
+
+Can not mock automatic getters and setters
+
+example mocked.getString() will work where as mocked.string will not.
+
+This is due to limitations of Android not containing certain core java classes.
+

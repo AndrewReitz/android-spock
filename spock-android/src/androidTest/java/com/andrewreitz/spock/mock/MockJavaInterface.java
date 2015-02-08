@@ -5,4 +5,5 @@ public interface MockJavaInterface {
   String getString();
   int getInt();
   boolean getBoolean();
+  void doStuff();
 }

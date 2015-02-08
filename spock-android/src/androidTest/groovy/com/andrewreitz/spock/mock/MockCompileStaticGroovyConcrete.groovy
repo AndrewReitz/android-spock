@@ -1,7 +1,10 @@
-package com.andrewreitz.spock.mock;
+package com.andrewreitz.spock.mock
+
+import groovy.transform.CompileStatic;
 
 /** For testing mocking groovy concretes. */
-class MockGroovyConcrete implements MockGroovyInterface {
+@CompileStatic
+class MockCompileStaticGroovyConcrete implements MockGroovyInterface {
   @Override String getString() {
     throw new UnsupportedOperationException("Stub")
   }
