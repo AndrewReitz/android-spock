@@ -5,7 +5,6 @@ import java.util.List;
 import org.spockframework.mock.IMockConfiguration;
 import org.spockframework.mock.IMockFactory;
 import org.spockframework.mock.runtime.GroovyMockFactory;
-import org.spockframework.mock.runtime.JavaMockFactory;
 import org.spockframework.util.InternalSpockError;
 import org.spockframework.util.UnreachableCodeError;
 import spock.lang.Specification;

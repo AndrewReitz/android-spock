@@ -8,7 +8,7 @@ import org.spockframework.mock.IMockConfiguration;
 import org.spockframework.mock.IMockFactory;
 import org.spockframework.mock.MockImplementation;
 import org.spockframework.mock.runtime.IProxyBasedMockInterceptor;
-import org.spockframework.mock.runtime.ProxyBasedMockFactory;
+import org.spockframework.mock.runtime.JavaMockInterceptor;
 import org.spockframework.runtime.GroovyRuntimeUtil;
 import spock.lang.Specification;
 
