@@ -29,6 +29,7 @@ import spock.lang.Specification
  * @author Andrew Reitz
  */
 abstract class AndroidSpecification extends Specification {
+  // Note to self. This MUST be a groovy class. If java it will not run some some reason.
   @Override public Object createMock(String name, Class<?> type, MockNature nature,
       MockImplementation implementation, Map<String, Object> options, Closure closure) {
 
