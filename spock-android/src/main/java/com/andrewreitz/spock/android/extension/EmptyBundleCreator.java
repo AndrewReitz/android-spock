@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.andrewreitz.spock.android;
+package com.andrewreitz.spock.android.extension;
 
 import android.os.Bundle;
+import com.andrewreitz.spock.android.BundleCreator;
 
 /**
  * BundleCreator that returns an empty bundle.
@@ -23,7 +24,7 @@ import android.os.Bundle;
  * @author Andrew Reitz
  * @since 1.1
  */
-final class EmptyBundleCreator implements BundleCreator {
+public final class EmptyBundleCreator implements BundleCreator {
   private static final Bundle EMPTY_BUNDLE = new Bundle();
 
   @Override public Bundle createBundle() {

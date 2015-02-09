@@ -4,7 +4,7 @@ import android.content.Context
 import spock.lang.Specification
 
 class WithContextSpec extends Specification {
-  //@WithContext
+  @WithContext
   def context
 
   def "should get a context"() {
