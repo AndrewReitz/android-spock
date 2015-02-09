@@ -28,6 +28,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Debug;
 import android.os.IBinder;
+import android.support.multidex.MultiDex;
 import android.support.test.internal.runner.SpockTestRequestBuilder;
 import android.support.test.internal.runner.TestRequest;
 import android.support.test.internal.runner.TestRequestBuilder;
@@ -53,6 +54,7 @@ import org.junit.internal.TextListener;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.RunListener;
+import org.spockframework.util.ReflectionUtil;
 
 /**
  * An {@link Instrumentation} that runs JUnit3 and JUnit4 tests against
@@ -179,7 +181,10 @@ public class AndroidSpockRunner extends MonitoringInstrumentation {
   static final String ARGUMENT_TEST_FILE = "testFile";
   // TODO: consider supporting 'count' from InstrumentationTestRunner
 
-  private static final String LOG_TAG = "AndroidJUnitRunner";
+  private static final String LOG_TAG = AndroidSpockRunner.class.getSimpleName();
+
+  private static final boolean MULTI_DEX_AVAILABLE =
+      ReflectionUtil.isClassAvailable("android.support.multidex.MultiDex");
 
   // used to separate multiple fully-qualified test case class names
   private static final char CLASS_SEPARATOR = ',';
@@ -190,6 +195,9 @@ public class AndroidSpockRunner extends MonitoringInstrumentation {
 
   @Override
   public void onCreate(Bundle arguments) {
+    if (MULTI_DEX_AVAILABLE) {
+      MultiDex.install(getTargetContext());
+    }
     super.onCreate(arguments);
     setArguments(arguments);
     specifyDexMakerCacheProperty();

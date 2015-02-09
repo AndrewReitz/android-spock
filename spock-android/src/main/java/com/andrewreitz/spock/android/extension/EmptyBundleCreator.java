@@ -13,20 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.andrewreitz.spock.example
+package com.andrewreitz.spock.android.extension;
 
-import spock.lang.Specification
+import android.os.Bundle;
+import com.andrewreitz.spock.android.BundleCreator;
 
-class AndroidTestSpec extends Specification {
-  def "this should run on android!"() {
-    given:
-    def a = 2
-    def b = 3
+/**
+ * BundleCreator that returns an empty bundle.
+ *
+ * @author Andrew Reitz
+ * @since 1.1
+ */
+public final class EmptyBundleCreator implements BundleCreator {
+  private static final Bundle EMPTY_BUNDLE = new Bundle();
 
-    when:
-    def result = a + b
-
-    then:
-    result == 5
+  @Override public Bundle createBundle() {
+    return EMPTY_BUNDLE;
   }
 }
