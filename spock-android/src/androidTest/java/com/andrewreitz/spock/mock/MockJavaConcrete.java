@@ -17,4 +17,8 @@ public class MockJavaConcrete implements MockJavaInterface {
   @Override public void doStuff() {
     throw new UnsupportedOperationException("Stub");
   }
+
+  @Override public void setStuff(Object value) {
+    throw new UnsupportedOperationException("Stub");
+  }
 }

@@ -17,4 +17,8 @@ class MockGroovyConcrete implements MockGroovyInterface {
   @Override void doStuff() {
     throw new UnsupportedOperationException("Stub")
   }
+
+  @Override void setStuff(Object value) {
+    throw new UnsupportedOperationException("Stub")
+  }
 }
