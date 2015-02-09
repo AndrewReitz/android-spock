@@ -78,9 +78,6 @@ Write your tests like you would regular spock tests. See the spock-android-sampl
 
 ### Notes
 
-Can not mock automatic getters and setters
-
-example mocked.getString() will work where as mocked.string will not.
-
-This is due to limitations of Android not containing certain core java classes.
+Can not mock automatic getters and setters. Example `mocked.getString()` will work where as
+`mocked.string` will not. This is due to limitations of Android not containing certain core java classes.
 
