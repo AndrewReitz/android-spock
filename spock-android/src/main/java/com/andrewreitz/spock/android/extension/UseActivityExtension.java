@@ -13,8 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.andrewreitz.spock.android;
+package com.andrewreitz.spock.android.extension;
 
+import com.andrewreitz.spock.android.BundleCreator;
+import com.andrewreitz.spock.android.UseActivity;
 import org.spockframework.runtime.extension.AbstractAnnotationDrivenExtension;
 import org.spockframework.runtime.model.FieldInfo;
 

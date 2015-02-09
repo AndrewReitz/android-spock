@@ -16,6 +16,7 @@
 package com.andrewreitz.spock.android;
 
 import android.app.Activity;
+import com.andrewreitz.spock.android.extension.UseActivityExtension;
 import org.spockframework.runtime.extension.ExtensionAnnotation;
 
 import java.lang.annotation.ElementType;

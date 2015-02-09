@@ -3,6 +3,7 @@
     package="com.example.spock">
 
   <application
+      android:name=".MyApplication"
       android:allowBackup="true"
       android:label="Spock Sample"
       >

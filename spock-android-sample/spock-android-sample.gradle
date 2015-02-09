@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'groovyx.grooid.groovy-android'
 
 repositories {
-  mavenLocal()
   jcenter()
   maven { url = 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
 }
@@ -55,7 +54,7 @@ configurations.all {
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.0:grooid'
 
-  androidTestCompile 'com.andrewreitz:spock-android:1.1.0-SNAPSHOT'
+  androidTestCompile "com.andrewreitz:spock-android:$project.version"
   androidTestCompile 'junit:junit-dep:4.11'
   androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
     exclude group: 'org.codehaus.groovy'
@@ -64,7 +63,5 @@ dependencies {
   androidTestCompile('com.android.support.test:testing-support-lib:0.1') {
     exclude group: 'junit'
   }
-
-  androidTestCompile "org.mockito:mockito-core:1.10.19"
   androidTestCompile "com.google.dexmaker:dexmaker-mockito:1.2"
 }

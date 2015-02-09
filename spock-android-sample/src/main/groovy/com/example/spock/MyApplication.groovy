@@ -15,31 +15,12 @@
  */
 package com.example.spock
 
-import android.app.Instrumentation
-import android.support.test.InstrumentationRegistry
-import spock.lang.Specification
+import android.app.Application
+import android.util.Log
 
-class AndroidTestSpec extends Specification {
-  Instrumentation instrumentation = InstrumentationRegistry.instrumentation
-
-  def "this should run on Android!"() {
-    given:
-    def a = 2
-    def b = 3
-
-    when:
-    def result = a + b
-
-    then:
-    result == 5
-  }
-
-  def "testing application"() {
-    given:
-    def application = Instrumentation.newApplication(MyApplication, instrumentation.targetContext)
-
-    expect:
-    application != null
-    application instanceof MyApplication
+class MyApplication extends Application {
+  @Override void onCreate() {
+    super.onCreate()
+    Log.d(this.class.name, "onCreate")
   }
 }
