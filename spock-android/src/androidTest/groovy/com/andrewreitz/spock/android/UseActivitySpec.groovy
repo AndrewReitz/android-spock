@@ -1,7 +1,7 @@
 package com.andrewreitz.spock.android
 
 import android.os.Bundle
-import spock.lang.Specification;
+import spock.lang.Specification
 
 class UseActivitySpec extends Specification {
   @UseActivity(SimpleTestActivity)

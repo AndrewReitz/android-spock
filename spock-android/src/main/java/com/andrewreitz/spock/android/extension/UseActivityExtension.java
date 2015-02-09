@@ -21,7 +21,7 @@ import org.spockframework.runtime.extension.AbstractAnnotationDrivenExtension;
 import org.spockframework.runtime.model.FieldInfo;
 
 /**
- * Spock extension for hooking into field annotations. This is used to add an interceptor to the
+ * Extension for hooking into field annotations. This is used to add an interceptor to the
  * setup fixture allowing it to create the activity specified.
  *
  * @author Andrew Reitz
