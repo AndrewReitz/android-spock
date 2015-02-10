@@ -38,6 +38,7 @@ android {
   // in order to bring memory usage down on CI
   dexOptions {
     incremental false
+    preDexLibraries false
     javaMaxHeapSize "1G"
   }
 
