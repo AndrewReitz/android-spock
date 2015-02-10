@@ -1,2 +1,5 @@
 android.support.test.internal.runner
 com.andrewreitz.spock
+com.andrewreitz.spock.android
+com.andrewreitz.spock.android.extension
+com.andrewreitz.spock.android.mock.runtime
