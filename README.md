@@ -44,9 +44,8 @@ dependencies {
     exclude group: 'junit'
   }
 
-  // For mocking (Android does not support mocks used by Spock)
-  androidTestCompile "org.mockito:mockito-core:1.10.19"
-  androidTestCompile "com.google.dexmaker:dexmaker-mockito:1.2"
+  // Optional, needed for mocking
+  androidTestCompile "com.google.dexmaker:dexmaker:1.2"
   ...
 }
 ```
@@ -76,8 +75,55 @@ Tests must be placed in the `./src/androidTest/groovy` directory.
 Write your tests like you would regular spock tests. See the spock-android-sample project and
 [Spock Framework](//spockframework.org) for more details.
 
-### Notes
+### Mocking
 
-Can not mock automatic getters and setters. Example `mocked.getString()` will work where as
-`mocked.string` will not. This is due to limitations of Android not containing certain core java classes.
+Objenesis and cglib do not work with Android. But that's okay. Using dexmaker we can still create
+mock objects in spock fashion. The only difference is instead of your test classes inheriting from
+`Specification`, you just need to inherit from `AndroidSpecification`.
 
+Note: You can not use mocked automatic getters and setters. Example `mocked.getString()` will work
+where as `mocked.string` will not. This is due to limitations of Android not containing certain core
+java classes.
+
+### Annotations
+
+`UseActivity` is an field annotation to get access to your Activity during tests. You can even
+provide bundle arguments by supplying a BundleCreator.
+
+Ex.
+```groovy
+@UseActivity(MyActivity) def myActivity
+```
+
+`UseApplication` is a field annotation that supplies your Application.
+
+Ex.
+```groovy
+@UseApplication(MyApplication) def myApplication
+```
+
+`WithContext` is a field annotation that supplies you with a context. This is not an implementation of
+your application.
+
+Ex.
+```groovy
+@WithContext def context
+```
+
+All field annotations will be set during the setup fixture.
+
+## License
+
+    Copyright 2015 Andrew Reitz
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
