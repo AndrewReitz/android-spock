@@ -17,7 +17,7 @@ buildscript {
 
   dependencies {
     classpath 'com.android.tools.build:gradle:1.0.0'
-    classpath 'me.champeau.gradle:gradle-groovy-android-plugin:0.3.4'
+    classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.5'
   }
 }
 
@@ -25,7 +25,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'groovyx.grooid.groovy-android'
 ```
 
-See [groovy-android-gradle-plugin](//github.com/melix/groovy-android-gradle-plugin/) for more
+See [groovy-android-gradle-plugin](//github.com/groovy/groovy-android-gradle-plugin) for more
 details.
 
 ### Setup Dependencies
@@ -111,6 +111,10 @@ Ex.
 ```
 
 All field annotations will be set during the setup fixture.
+
+### Notes
+
+If you get DEX_OP
 
 ## License
 
