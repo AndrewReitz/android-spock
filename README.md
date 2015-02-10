@@ -114,7 +114,9 @@ All field annotations will be set during the setup fixture.
 
 ### Notes
 
-If you get DEX_OP
+If you get `INSTALL_FAILED_DEXOPT`, there is something wrong with your spock tests. This is
+unfortunately very hard to debug as there is little to no log output. The easiest way to avoid this
+is write one test at a time. I currently have has this issue mainly with RxJava Actions.
 
 ## License
 
