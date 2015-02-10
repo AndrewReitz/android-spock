@@ -38,7 +38,7 @@ android {
   // in order to bring memory usage down on CI
   dexOptions {
     incremental false
-    javaMaxHeapSize "2G"
+    javaMaxHeapSize "1G"
   }
 
   lintOptions {
