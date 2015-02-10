@@ -13,31 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.andrewreitz.spock.example
+package com.example.spock
 
-import android.widget.Button
-import com.andrewreitz.spock.UseActivity
+import android.app.Instrumentation
+import android.support.test.InstrumentationRegistry
 import spock.lang.Specification
 
-class MainActivitySpec extends Specification {
+class AndroidTestSpec extends Specification {
+  Instrumentation instrumentation = InstrumentationRegistry.instrumentation
 
-  @UseActivity(MainActivity)
-  def activity
-
-  def "test activity setup"() {
-    expect:
-    activity != null
-    activity instanceof MainActivity
-  }
-
-  def "test layout"() {
+  def "this should run on Android!"() {
     given:
-    def button = activity.findViewById(R.id.main_button) as Button
+    def a = 2
+    def b = 3
 
     when:
-    def buttonText = button.getText()
+    def result = a + b
 
     then:
-    buttonText == "Test"
+    result == 5
+  }
+
+  def "testing application"() {
+    given:
+    def application = Instrumentation.newApplication(MyApplication, instrumentation.targetContext)
+
+    expect:
+    application != null
+    application instanceof MyApplication
   }
 }
