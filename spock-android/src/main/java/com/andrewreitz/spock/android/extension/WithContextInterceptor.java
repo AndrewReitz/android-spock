@@ -34,6 +34,7 @@ public class WithContextInterceptor extends AbstractMethodInterceptor {
   }
 
   @Override public void interceptSetupMethod(IMethodInvocation invocation) throws Throwable {
-    fieldInfo.writeValue(invocation.getTarget(), InstrumentationRegistry.getTargetContext());
+    fieldInfo.writeValue(invocation.getInstance(), InstrumentationRegistry.getTargetContext());
+    invocation.proceed();
   }
 }

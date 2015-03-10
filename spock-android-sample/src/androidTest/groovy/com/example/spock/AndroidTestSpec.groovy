@@ -15,13 +15,9 @@
  */
 package com.example.spock
 
-import android.app.Instrumentation
-import android.support.test.InstrumentationRegistry
 import spock.lang.Specification
 
 class AndroidTestSpec extends Specification {
-  Instrumentation instrumentation = InstrumentationRegistry.instrumentation
-
   def "this should run on Android!"() {
     given:
     def a = 2
@@ -32,14 +28,5 @@ class AndroidTestSpec extends Specification {
 
     then:
     result == 5
-  }
-
-  def "testing application"() {
-    given:
-    def application = Instrumentation.newApplication(MyApplication, instrumentation.targetContext)
-
-    expect:
-    application != null
-    application instanceof MyApplication
   }
 }

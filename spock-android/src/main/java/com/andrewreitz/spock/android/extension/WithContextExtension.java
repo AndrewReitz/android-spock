@@ -18,6 +18,7 @@ package com.andrewreitz.spock.android.extension;
 import com.andrewreitz.spock.android.WithContext;
 import org.spockframework.runtime.extension.AbstractAnnotationDrivenExtension;
 import org.spockframework.runtime.model.FieldInfo;
+import org.spockframework.runtime.model.SpecInfo;
 
 /**
  * Extension for hooking into field annotations. This is used to add an interceptor to the
@@ -29,6 +30,6 @@ import org.spockframework.runtime.model.FieldInfo;
 public class WithContextExtension extends AbstractAnnotationDrivenExtension<WithContext> {
   @Override public void visitFieldAnnotation(WithContext annotation, FieldInfo field) {
     WithContextInterceptor interceptor = new WithContextInterceptor(field);
-    field.getParent().getSetupMethod().addInterceptor(interceptor);
+    field.getParent().addSetupInterceptor(interceptor);
   }
 }

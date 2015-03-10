@@ -22,6 +22,8 @@ import org.spockframework.mock.runtime.MockConfiguration
 import org.spockframework.runtime.GroovyRuntimeUtil
 import spock.lang.Specification
 
+import java.lang.reflect.Type
+
 /**
  * Extend this class in order to make mocks of concrete classes on Android.
  *
@@ -30,9 +32,8 @@ import spock.lang.Specification
  */
 abstract class AndroidSpecification extends Specification {
   // Note to self. This MUST be a groovy class. If java it will not run some some reason.
-  @Override public Object createMock(String name, Class<?> type, MockNature nature,
-      MockImplementation implementation, Map<String, Object> options, Closure closure) {
-
+  @Override Object createMock(String name, Type type, MockNature nature, MockImplementation implementation,
+      Map<String, Object> options, Closure closure) {
     Object mock = AndroidMockFactory.INSTANCE.create(new MockConfiguration(name, type, nature,
         implementation, options), this)
 

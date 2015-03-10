@@ -16,7 +16,7 @@ android {
     versionCode 1
     versionName project.version
 
-    testInstrumentationRunner "com.andrewreitz.spock.AndroidSpockRunner"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
 
   packagingOptions {
@@ -26,7 +26,7 @@ android {
 
   buildTypes {
     debug {
-      minifyEnabled true
+      minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
     }
     release {
@@ -53,11 +53,11 @@ configurations.all {
 }
 
 dependencies {
-  compile 'org.codehaus.groovy:groovy:2.4.0:grooid'
+  compile 'org.codehaus.groovy:groovy:2.4.1:grooid'
 
   androidTestCompile "com.andrewreitz:spock-android:$project.version${isSnapshot ? "" : "-SNAPSHOT"}"
   androidTestCompile 'junit:junit-dep:4.11'
-  androidTestCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
+  androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
     exclude group: 'org.codehaus.groovy'
     exclude group: 'junit'
   }

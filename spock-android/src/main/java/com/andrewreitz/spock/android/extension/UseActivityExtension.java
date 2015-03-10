@@ -30,15 +30,14 @@ import org.spockframework.runtime.model.FieldInfo;
 public class UseActivityExtension extends AbstractAnnotationDrivenExtension<UseActivity> {
   @Override public void visitFieldAnnotation(UseActivity annotation, FieldInfo field) {
 
-    BundleCreator bundleCreator = instanciateBundleCreator(annotation.bundleCreator());
+    BundleCreator bundleCreator = instantiateBundleCreator(annotation.bundleCreator());
 
     UseActivityInterceptor activityInterceptor =
         new UseActivityInterceptor(field, annotation.value(), bundleCreator);
-    field.getParent().getSetupMethod().addInterceptor(activityInterceptor);
+    field.getParent().addSetupInterceptor(activityInterceptor);
   }
 
-  private BundleCreator instanciateBundleCreator(
-      Class<? extends BundleCreator> bundleCreatorClass) {
+  private BundleCreator instantiateBundleCreator(Class<? extends BundleCreator> bundleCreatorClass) {
     BundleCreator bundleCreator;
     try {
       bundleCreator = bundleCreatorClass.newInstance();

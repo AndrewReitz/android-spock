@@ -30,6 +30,6 @@ public class UseApplicationExtension extends AbstractAnnotationDrivenExtension<U
   @Override public void visitFieldAnnotation(UseApplication annotation, FieldInfo field) {
     UseApplicationInterceptor interceptor =
         new UseApplicationInterceptor(field, annotation.value());
-    field.getParent().getSetupMethod().addInterceptor(interceptor);
+    field.getParent().addSetupInterceptor(interceptor);
   }
 }

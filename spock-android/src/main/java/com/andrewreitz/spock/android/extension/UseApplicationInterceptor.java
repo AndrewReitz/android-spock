@@ -43,6 +43,7 @@ public class UseApplicationInterceptor extends AbstractMethodInterceptor {
   @Override public void interceptSetupMethod(IMethodInvocation invocation) throws Throwable {
     final Application application =
         Instrumentation.newApplication(applicationClass, instrumentation.getTargetContext());
-    fieldInfo.writeValue(invocation.getTarget(), application);
+    fieldInfo.writeValue(invocation.getInstance(), application);
+    invocation.proceed();
   }
 }
