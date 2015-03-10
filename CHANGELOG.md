@@ -3,6 +3,7 @@
 ## Version 1.2.0
 
 * Updated to work with Spock 1.0
+* Removed need for custom runner
 
 ## Version 1.1.0
 

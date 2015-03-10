@@ -58,7 +58,7 @@ android {
 
   defaultConfig {
     ...
-    testInstrumentationRunner "com.andrewreitz.spock.AndroidSpockRunner"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
 
   packagingOptions {
