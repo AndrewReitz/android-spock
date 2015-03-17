@@ -33,7 +33,7 @@ details.
 ```groovy
 dependencies {
   ...
-  androidTestCompile 'org.codehaus.groovy:groovy:2.4.0:grooid'
+  androidTestCompile 'org.codehaus.groovy:groovy:2.4.1:grooid'
   androidTestCompile "com.andrewreitz:spock-android:${androidSpockVersion}"
   androidTestCompile 'junit:junit-dep:4.11'
   androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
