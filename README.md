@@ -16,8 +16,8 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:1.0.0'
-    classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.5'
+    classpath 'com.android.tools.build:gradle:1.1.3'
+    classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.6'
   }
 }
 
@@ -33,14 +33,12 @@ details.
 ```groovy
 dependencies {
   ...
-  androidTestCompile 'org.codehaus.groovy:groovy:2.4.1:grooid'
+  androidTestCompile 'org.codehaus.groovy:groovy:2.4.2:grooid'
   androidTestCompile "com.andrewreitz:spock-android:${androidSpockVersion}"
-  androidTestCompile 'junit:junit-dep:4.11'
+  androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+
   androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
     exclude group: 'org.codehaus.groovy'
-    exclude group: 'junit'
-  }
-  androidTestCompile('com.android.support.test:testing-support-lib:0.1') {
     exclude group: 'junit'
   }
 
