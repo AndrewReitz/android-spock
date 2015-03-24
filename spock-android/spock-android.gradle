@@ -43,11 +43,7 @@ android {
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.1:grooid'
 
-  compile 'junit:junit-dep:4.11'
-
-  compile('com.android.support.test:testing-support-lib:0.1') {
-    exclude group: 'junit'
-  }
+  compile 'com.android.support.test:testing-support-lib:0.1'
 
   compile('org.spockframework:spock-core:1.0-groovy-2.4') {
     exclude group: 'org.codehaus.groovy'
