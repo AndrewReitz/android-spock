@@ -55,6 +55,7 @@ configurations.all {
 dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.1:grooid'
 
+  androidTestCompile project(':spock-android')
   androidTestCompile "com.andrewreitz:spock-android:$project.version${isSnapshot ? "" : "-SNAPSHOT"}"
   androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
     exclude group: 'org.codehaus.groovy'
