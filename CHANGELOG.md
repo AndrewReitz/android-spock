@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 1.2.1
+
+* Updated to support back to Android SDK 8
+
 ## Version 1.2.0
 
 * Updated to work with Spock 1.0
