@@ -21,7 +21,7 @@ buildscript {
 }
 
 allprojects {
-  version = "1.2.1${isSnapshot == false ? '' : '-SNAPSHOT'}"
+  version = "1.2.2${isSnapshot == false ? '' : '-SNAPSHOT'}"
   group = "com.andrewreitz"
 
   repositories {
