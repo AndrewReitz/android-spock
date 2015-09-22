@@ -53,7 +53,7 @@ configurations.all {
 }
 
 dependencies {
-  compile 'org.codehaus.groovy:groovy:2.4.1:grooid'
+  compile 'org.codehaus.groovy:groovy:2.4.4:grooid'
 
   androidTestCompile project(':spock-android')
   androidTestCompile "com.andrewreitz:spock-android:$project.version${isSnapshot ? "" : "-SNAPSHOT"}"
@@ -61,6 +61,6 @@ dependencies {
     exclude group: 'org.codehaus.groovy'
     exclude group: 'junit'
   }
-  androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+  androidTestCompile 'com.android.support.test:runner:0.3'
   androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
 }
