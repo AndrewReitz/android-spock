@@ -46,4 +46,10 @@ public @interface UseActivity {
    * created for testing.
    */
   Class<? extends BundleCreator> bundleCreator() default EmptyBundleCreator.class;
+
+  /**
+   * @return A BundleCreator that will create and pass a bundle to the Activity that is being
+   * created for testing.
+   */
+  RunMode runMode() default RunMode.SPECIFICATION;
 }
