@@ -1,5 +1,10 @@
 # Change Log
 
+## Version 1.2.2
+
+* Added `ActivityRunMode` to be used with `@UseActivity` for launch a new activity for each
+test method or using the same activity through out the entire specification.
+
 ## Version 1.2.1
 
 * Updated to support back to Android SDK 8
