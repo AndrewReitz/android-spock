@@ -1,6 +1,6 @@
 include \
   "spock-android",
-  "spock-android-sample",
+  "spock-android-sample"
 
 rootProject.name = 'android-spock-parent'
 
