@@ -3,7 +3,7 @@ package com.andrewreitz.spock.android
 import spock.lang.Specification
 import spock.lang.Stepwise
 
-import static com.andrewreitz.spock.android.RunMode.METHOD
+import static ActivityRunMode.METHOD
 
 @Stepwise
 class UseActivityPerMethodSpec extends Specification {
