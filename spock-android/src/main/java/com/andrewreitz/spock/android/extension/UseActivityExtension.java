@@ -33,7 +33,7 @@ public class UseActivityExtension extends AbstractAnnotationDrivenExtension<UseA
     BundleCreator bundleCreator = instantiateBundleCreator(annotation.bundleCreator());
 
     UseActivityInterceptor activityInterceptor =
-        new UseActivityInterceptor(field, annotation.value(), bundleCreator);
+        new UseActivityInterceptor(field, annotation.value(), bundleCreator, annotation.runMode());
     field.getParent().addSetupInterceptor(activityInterceptor);
   }
 

@@ -20,6 +20,8 @@ import android.app.Instrumentation;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import com.andrewreitz.spock.android.BundleCreator;
+import com.andrewreitz.spock.android.ActivityRunMode;
+
 import org.spockframework.runtime.extension.AbstractMethodInterceptor;
 import org.spockframework.runtime.extension.IMethodInvocation;
 import org.spockframework.runtime.model.FieldInfo;
@@ -37,6 +39,7 @@ public class UseActivityInterceptor extends AbstractMethodInterceptor {
 
   private Activity activity;
   private BundleCreator bundleCreator;
+  private ActivityRunMode activityRunMode;
 
   /**
    * Constructor
@@ -49,10 +52,11 @@ public class UseActivityInterceptor extends AbstractMethodInterceptor {
    * activity.
    */
   public UseActivityInterceptor(FieldInfo fieldInfo, Class<? extends Activity> activityClass,
-      BundleCreator bundleCreator) {
+      BundleCreator bundleCreator, ActivityRunMode activityRunMode) {
     this.fieldInfo = fieldInfo;
     this.activityClass = activityClass;
     this.bundleCreator = bundleCreator;
+    this.activityRunMode = activityRunMode;
   }
 
   @Override public void interceptSetupMethod(IMethodInvocation invocation) throws Throwable {
@@ -86,10 +90,10 @@ public class UseActivityInterceptor extends AbstractMethodInterceptor {
     return activity;
   }
 
-  /** Launch the activity if it has not be started. */
+  /** Launch the activity if needed. */
   @SuppressWarnings("unchecked")
   private void launchActivity() {
-    if (activity != null) return;
+    if (activity != null && ActivityRunMode.SPECIFICATION.equals(activityRunMode)) return;
 
     String targetPackage = instrumentation.getTargetContext().getPackageName();
     Intent intent = getLaunchIntent(targetPackage, activityClass, bundleCreator);

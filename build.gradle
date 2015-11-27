@@ -1,7 +1,7 @@
 ext {
   minSdkVersion = 8
   compileSdkVersion = 22
-  buildToolsVersion = '22.0.1'
+  buildToolsVersion = '23.0.1'
 
   isSnapshot = !project.hasProperty('release')
 }

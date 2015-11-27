@@ -46,4 +46,9 @@ public @interface UseActivity {
    * created for testing.
    */
   Class<? extends BundleCreator> bundleCreator() default EmptyBundleCreator.class;
+
+  /**
+   * @return Defines when Activity should be launched (SPECIFICATION - once per specification, METHOD - once per test method)
+   */
+  ActivityRunMode runMode() default ActivityRunMode.SPECIFICATION;
 }
