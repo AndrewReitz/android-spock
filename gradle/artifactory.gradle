@@ -2,12 +2,14 @@
 
 apply plugin: 'com.jfrog.artifactory'
 
+def targetRepo = project.version.endsWith('-SNAPSHOT')?'oss-snapshot-local':'oss-release-local'
+
 artifactory {
   contextUrl = 'http://oss.jfrog.org/artifactory'
   publish {
     contextUrl = 'http://oss.jfrog.org/artifactory'
     repository {
-      repoKey = 'oss-snapshot-local'
+      repoKey = targetRepo
       username = bintrayUsername
       password = bintrayKey
     }
@@ -20,5 +22,13 @@ artifactory {
     repository {
       repoKey = 'libs-release'
     }
+  }
+}
+
+artifactoryPublish {
+  onlyIf {
+    def pullRequest = System.getenv('TRAVIS_PULL_REQUEST')
+
+    !pullRequest || pullRequest=='false'
   }
 }
