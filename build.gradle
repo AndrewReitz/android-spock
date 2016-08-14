@@ -1,40 +1,31 @@
 ext {
   minSdkVersion = 8
-  compileSdkVersion = 23
-  buildToolsVersion = '23.0.1'
-
-  isSnapshot = !project.hasProperty('release')
+  compileSdkVersion = 24
+  buildToolsVersion = '24.0.1'
 }
 
 buildscript {
   repositories {
     jcenter()
-    maven { url "https://jitpack.io" }
-    maven  { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:1.5.0'
-    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
-    classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:3.0.1'
-    //use jitpack version until new release or snapshot is deployed again.
-    classpath 'com.github.groovy:groovy-android-gradle-plugin:1b77dd6763'
+    classpath 'com.android.tools.build:gradle:2.1.2'
+    classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.0.0'
+    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+    classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.4.2'
+    classpath 'com.github.ben-manes:gradle-versions-plugin:0.13.0'
+    classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.0.0'
   }
 }
 
 allprojects {
-  version = "1.2.2${isSnapshot == false ? '' : '-SNAPSHOT'}"
+  version = '2.0.0-SNAPSHOT'
   group = "com.andrewreitz"
 
   repositories {
     jcenter()
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
   }
 
   apply from: "$rootDir/gradle/credentials.gradle"
 }
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.9'
-}
-

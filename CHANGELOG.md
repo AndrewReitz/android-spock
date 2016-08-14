@@ -1,5 +1,11 @@
 # Change Log
 
+## Version 2.0.0
+
+* Updated compile version to 24
+* Updated DexMaker to 1.4, switched from google owned to crittersism, also no requires
+dexmaker-dx
+
 ## Version 1.2.2
 
 * Added `ActivityRunMode` to be used with `@UseActivity` for launch a new activity for each
