@@ -1,6 +1,6 @@
 package com.andrewreitz.spock.android.mock.runtime;
 
-import com.google.dexmaker.stock.ProxyBuilder;
+import com.android.dx.stock.ProxyBuilder;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -23,8 +23,9 @@ import org.spockframework.util.ReflectionUtil;
  * @author Andrew Reitz
  */
 public class ProxyBasedMockFactory {
-  private static final boolean dexMakerAvailable =
-      ReflectionUtil.isClassAvailable("com.google.dexmaker.stock.ProxyBuilder");
+  private static final boolean DEX_MAKER_AVAILABLE =
+      ReflectionUtil.isClassAvailable("com.android.dx.stock.ProxyBuilder") &&
+          ReflectionUtil.isClassAvailable("com.android.dx.rop.type.Type");
 
   public static ProxyBasedMockFactory INSTANCE = new ProxyBasedMockFactory();
 
@@ -32,19 +33,19 @@ public class ProxyBasedMockFactory {
 
   public Object create(Class<?> mockType, List<Class<?>> additionalInterfaces,
       @Nullable List<Object> constructorArgs, IProxyBasedMockInterceptor mockInterceptor,
-      ClassLoader classLoader, boolean useObjenesis) throws CannotCreateMockException {
+      ClassLoader classLoader) throws CannotCreateMockException {
     Object proxy;
 
     if (mockType.isInterface()) {
-      proxy =
-          createDynamicProxyMock(mockType, additionalInterfaces, constructorArgs, mockInterceptor,
-              classLoader);
-    } else if (dexMakerAvailable) {
+      proxy = createDynamicProxyMock(mockType, additionalInterfaces, constructorArgs,
+          mockInterceptor, classLoader);
+    } else if (DEX_MAKER_AVAILABLE) {
       proxy = DexMakerMockFactory.createMock(mockType, additionalInterfaces, constructorArgs,
-          mockInterceptor, classLoader, useObjenesis);
+          mockInterceptor, classLoader);
     } else {
       throw new CannotCreateMockException(mockType,
-          ". Mocking of non-interface types requires the DexMaker library. Please put dexmaker-1.2 or higher on the class path.");
+          ". Mocking of non-interface types requires the DexMaker library. Please put dexmaker-1.4 "
+              + "and dexmaker-dx-1.4 or higher on the class path.");
     }
 
     return proxy;
@@ -68,7 +69,7 @@ public class ProxyBasedMockFactory {
   private static class DexMakerMockFactory {
     static Object createMock(Class<?> type, List<Class<?>> additionalInterfaces,
         @Nullable List<Object> constructorArgs, final IProxyBasedMockInterceptor interceptor,
-        ClassLoader classLoader, boolean useObjenesis) {
+        ClassLoader classLoader) {
       List<Class<?>> interfaces = new ArrayList<Class<?>>();
       interfaces.addAll(additionalInterfaces);
       interfaces.add(ISpockMockObject.class);

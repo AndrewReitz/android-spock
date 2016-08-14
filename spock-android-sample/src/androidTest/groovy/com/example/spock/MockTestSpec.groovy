@@ -1,7 +1,7 @@
 package com.example.spock
 
 import android.widget.Button;
-import com.andrewreitz.spock.android.AndroidSpecification;
+import com.andrewreitz.spock.android.AndroidSpecification
 
 class MockTestSpec extends AndroidSpecification {
   def "I'm mocking on Android!"() {

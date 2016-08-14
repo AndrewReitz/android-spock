@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'groovyx.grooid.groovy-android'
+apply plugin: 'groovyx.android'
 
 android {
   compileSdkVersion project.compileSdkVersion
@@ -28,11 +28,6 @@ android {
     exclude 'LICENSE.txt'
   }
 
-  // Android plugin is doing something after the fact to remove this so add it back
-  sourceSets {
-    androidTest.java.srcDir 'src/androidTest/groovy'
-  }
-
   dexOptions {
     preDexLibraries false
     incremental false
@@ -41,17 +36,16 @@ android {
 }
 
 dependencies {
-  compile 'org.codehaus.groovy:groovy:2.4.4:grooid'
+  compile 'org.codehaus.groovy:groovy:2.4.7:grooid'
+  compile 'com.crittercism.dexmaker:dexmaker:1.4'
+  compile 'com.crittercism.dexmaker:dexmaker-dx:1.4'
 
-  compile 'com.android.support.test:runner:0.3'
+  compile 'com.android.support.test:runner:0.5'
 
   compile('org.spockframework:spock-core:1.0-groovy-2.4') {
     exclude group: 'org.codehaus.groovy'
     exclude group: 'junit'
   }
-
-  compile 'com.google.dexmaker:dexmaker:1.2'
-  compile 'com.android.support:multidex:1.0.1'
 }
 
 apply from: "$rootDir/gradle/compile.gradle"
@@ -104,5 +98,10 @@ rm -rf \$DIR
 
 task release {
   description = 'Release a version and publish the javadocs (must run with -Prelease)'
-  dependsOn clean, assemble, check, bintrayUpload
+  dependsOn clean, assemble, check, bintrayUpload, publishJavadoc
+}
+
+// The default 'assemble' task only applies to normal variants. Add test variants as well.
+android.testVariants.all { variant ->
+  tasks.getByName('assemble').dependsOn variant.assemble
 }
