@@ -24,7 +24,7 @@ before_script:
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
-script: ./gradlew 
+script: ./gradlew clean ass cAT
 
 branches:
   except:
