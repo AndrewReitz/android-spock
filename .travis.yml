@@ -24,7 +24,7 @@ before_script:
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
-script: ./gradlew clean ass cAT
+script: ./gradlew -q -s -d -PbuildInfo.build.number=$TRAVIS_BUILD_NUMBER clean ass cAT artifactoryPublish
 
 branches:
   except:
