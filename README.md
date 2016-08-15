@@ -14,13 +14,13 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:1.1.3'
-    classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.6'
+     classpath 'com.android.tools.build:gradle:2.1.2'
+     classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.0.0'
   }
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'groovyx.grooid.groovy-android'
+apply plugin: 'groovyx.android'
 ```
 
 See [groovy-android-gradle-plugin](//github.com/groovy/groovy-android-gradle-plugin) for more
