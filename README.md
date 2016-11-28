@@ -1,7 +1,7 @@
 # Spock for Android
 
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=583c48ac3f7e8e0100bc315b&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/583c48ac3f7e8e0100bc315b/build/latest)
-[![Build Status](https://snap-ci.com/pieces029/android-spock/branch/master/build_image)](https://snap-ci.com/pieces029/android-spock/branch/master)
+[![Build Status](https://travis-ci.org/pieces029/android-spock.svg?branch=master)](https://travis-ci.org/pieces029/android-spock)
 
 
 This library allows for the [Spock Framework](//spockframework.org) mocks to be used on Android. As
