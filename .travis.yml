@@ -17,7 +17,7 @@ env:
    # install timeout in minutes (2 minutes by default)
     - ADB_INSTALL_TIMEOUT=8
 
-script: ./gradlew -q -s -d -PbuildInfo.build.number=$TRAVIS_BUILD_NUMBER clean ass artifactoryPublish
+script: ./gradlew -q -PbuildInfo.build.number=$TRAVIS_BUILD_NUMBER clean ass artifactoryPublish
 
 branches:
   except:
