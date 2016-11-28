@@ -8,7 +8,6 @@ android:
     - android-25
     - extra-google-m2repository
     - extra-android-m2repository
-    - sys-img-armeabi-v7a-android-25
 
 jdk:
   - oraclejdk8
@@ -18,13 +17,7 @@ env:
    # install timeout in minutes (2 minutes by default)
     - ADB_INSTALL_TIMEOUT=8
 
-before_script:
-  - echo no | android create avd --force -n test -t android-25 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
-
-script: ./gradlew -q -s -d -PbuildInfo.build.number=$TRAVIS_BUILD_NUMBER clean ass cAT artifactoryPublish
+script: ./gradlew -q -s -d -PbuildInfo.build.number=$TRAVIS_BUILD_NUMBER clean ass artifactoryPublish
 
 branches:
   except:
