@@ -37,8 +37,7 @@ android {
   // in order to bring memory usage down on CI
   dexOptions {
     incremental false
-    preDexLibraries false
-    javaMaxHeapSize "1538M"
+    javaMaxHeapSize '1538M'
   }
 
   lintOptions {
@@ -50,14 +49,6 @@ dependencies {
   compile 'org.codehaus.groovy:groovy:2.4.7:grooid'
 
   androidTestCompile project(':spock-android')
-  androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
-    exclude group: 'org.codehaus.groovy'
-    exclude group: 'junit'
-  }
-  androidTestCompile 'com.android.support.test:runner:0.5'
-
-  androidTestCompile 'com.crittercism.dexmaker:dexmaker:1.4'
-  androidTestCompile 'com.crittercism.dexmaker:dexmaker-dx:1.4'
 }
 
 // The default 'assemble' task only applies to normal variants. Add test variants as well.

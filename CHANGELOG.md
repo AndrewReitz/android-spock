@@ -2,9 +2,10 @@
 
 ## Version 2.0.0
 
-* Updated compile version to 24
-* Updated DexMaker to 1.4, switched from google owned to crittersism, also no requires
+* Updated compile version to 25
+* Updated DexMaker to 1.4, switched from google owned to crittersism, also now requires
 dexmaker-dx
+* Removed need to include all extra dependencies, they will now be pulled transitively.
 
 ## Version 1.2.2
 

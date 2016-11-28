@@ -14,8 +14,8 @@ buildscript {
   }
 
   dependencies {
-     classpath 'com.android.tools.build:gradle:2.1.2'
-     classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.0.0'
+     classpath 'com.android.tools.build:gradle:2.2.2'
+     classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.1.0'
   }
 }
 
@@ -33,15 +33,6 @@ dependencies {
   ...
   androidTestCompile 'org.codehaus.groovy:groovy:2.4.7:grooid'
   androidTestCompile "com.andrewreitz:spock-android:${androidSpockVersion}"
-  androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
-
-  androidTestCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
-    exclude group: 'org.codehaus.groovy'
-    exclude group: 'junit'
-  }
-
-  // Optional, needed for mocking
-  androidTestCompile "com.google.dexmaker:dexmaker:1.2"
   ...
 }
 ```
@@ -108,15 +99,9 @@ Ex.
 
 All field annotations will be set during the setup fixture.
 
-### Notes
-
-If you get `INSTALL_FAILED_DEXOPT`, there is something wrong with your spock tests. This is
-unfortunately very hard to debug as there is little to no log output. The easiest way to avoid this
-is write one test at a time. I currently have has this issue mainly with RxJava Actions.
-
 ## License
 
-    Copyright 2015 Andrew Reitz
+    Copyright 2016 Andrew Reitz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
