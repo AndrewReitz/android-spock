@@ -35,7 +35,6 @@ details.
 ```groovy
 dependencies {
   ...
-  androidTestCompile 'org.codehaus.groovy:groovy:2.4.7:grooid'
   androidTestCompile "com.andrewreitz:spock-android:${androidSpockVersion}"
   ...
 }
@@ -68,11 +67,11 @@ Write your tests like you would regular spock tests. See the spock-android-sampl
 
 ### Mocking
 
-Objenesis and cglib do not work with Android. But that's okay. Using dexmaker we can still create
+Objenesis and cglib do not work with Android. But that's okay, using dexmaker we can still create
 mock objects in spock fashion. The only difference is instead of your test classes inheriting from
 `Specification`, you need to inherit from `AndroidSpecification`.
 
-Note: You can not use mocked automatic getters and setters. Example `mocked.getString()` will work
+**Note**: You can not use mocked automatic getters and setters. Example `mocked.getString()` will work
 where as `mocked.string` will not. This is due to limitations of Android not containing certain core
 java classes.
 
