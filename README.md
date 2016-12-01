@@ -28,7 +28,7 @@ apply plugin: 'groovyx.android'
 ```
 
 See [groovy-android-gradle-plugin](//github.com/groovy/groovy-android-gradle-plugin) for more
-details.
+information on setting this plugin up.
 
 ### Setup Dependencies
 
@@ -71,9 +71,9 @@ Objenesis and cglib do not work with Android. But that's okay, using dexmaker we
 mock objects in spock fashion. The only difference is instead of your test classes inheriting from
 `Specification`, you need to inherit from `AndroidSpecification`.
 
-**Note**: You can not use mocked automatic getters and setters. Example `mocked.getString()` will work
-where as `mocked.string` will not. This is due to limitations of Android not containing certain core
-java classes.
+**Note**: You can not use mocked automatic getters and setters. Example `mocked.getName()` will work
+where as `mocked.name` will not. This is due to limitations of Android not having the `java.bean`
+package available.
 
 ### Annotations
 
