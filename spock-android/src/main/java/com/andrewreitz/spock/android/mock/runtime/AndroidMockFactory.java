@@ -19,11 +19,11 @@ public class AndroidMockFactory implements IMockFactory {
     this.mockFactories = mockFactories;
   }
 
-  public boolean canCreate(IMockConfiguration configuration) {
+  @Override public boolean canCreate(IMockConfiguration configuration) {
     throw new UnreachableCodeError("canCreate");
   }
 
-  public Object create(IMockConfiguration configuration, Specification specification) {
+  @Override public Object create(IMockConfiguration configuration, Specification specification) {
     for (IMockFactory factory : mockFactories) {
       if (factory.canCreate(configuration)) {
         return factory.create(configuration, specification);
@@ -31,5 +31,9 @@ public class AndroidMockFactory implements IMockFactory {
     }
 
     throw new InternalSpockError("No matching mock factory found");
+  }
+
+  @Override public Object createDetached(IMockConfiguration configuration, ClassLoader classLoader) {
+    throw new UnreachableCodeError("createDetached");
   }
 }

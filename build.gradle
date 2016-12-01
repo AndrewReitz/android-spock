@@ -3,7 +3,7 @@ ext {
   compileSdkVersion = 25
   buildToolsVersion = '25.0.1'
 
-  spockVersion = '1.0-groovy-2.4'
+  spockVersion = '1.1-groovy-2.4-rc-3'
 }
 
 buildscript {
