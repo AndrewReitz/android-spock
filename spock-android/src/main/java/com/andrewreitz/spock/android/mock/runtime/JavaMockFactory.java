@@ -13,7 +13,7 @@ import org.spockframework.runtime.GroovyRuntimeUtil;
 import spock.lang.Specification;
 
 public class JavaMockFactory implements IMockFactory {
-  public static JavaMockFactory INSTANCE = new JavaMockFactory();
+  static JavaMockFactory INSTANCE = new JavaMockFactory();
 
   @Override public boolean canCreate(IMockConfiguration configuration) {
     return configuration.getImplementation() == MockImplementation.JAVA;

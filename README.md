@@ -1,7 +1,6 @@
 # Spock for Android
 
-[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=583c48ac3f7e8e0100bc315b&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/583c48ac3f7e8e0100bc315b/build/latest)
-[![Build Status](https://travis-ci.org/pieces029/android-spock.svg?branch=master)](https://travis-ci.org/pieces029/android-spock)
+[![Build Status](https://travis-ci.org/andrewreitz/android-spock.svg?branch=master)](https://travis-ci.org/andrewreitz/android-spock)
 
 
 This library allows for the [Spock Framework](//spockframework.org) mocks to be used on Android. As
@@ -18,7 +17,7 @@ buildscript {
   }
 
   dependencies {
-     classpath 'com.android.tools.build:gradle:2.2.2'
+     classpath 'com.android.tools.build:gradle:2.3.2'
      classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.1.0'
   }
 }
