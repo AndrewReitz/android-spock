@@ -35,9 +35,9 @@ android {
 }
 
 dependencies {
-  compile 'org.codehaus.groovy:groovy:2.4.7:grooid'
+  compile "org.codehaus.groovy:groovy:$groovyVersion:grooid"
 
-  compile 'com.android.support:support-annotations:25.0.1'
+  compile "com.android.support:support-annotations:$supportLibVersion"
   compile 'com.android.support.test:runner:0.5'
 
   compile 'com.crittercism.dexmaker:dexmaker:1.4'
@@ -47,6 +47,12 @@ dependencies {
     exclude group: 'org.codehaus.groovy'
     exclude group: 'junit'
   }
+}
+
+configurations.all {
+  // force anything that depends on support-annotations to always use the latest version
+  resolutionStrategy.force "com.android.support:support-annotations:$supportLibVersion"
+  resolutionStrategy.force 'junit:junit:4.12'
 }
 
 apply from: "$rootDir/gradle/compile.gradle"

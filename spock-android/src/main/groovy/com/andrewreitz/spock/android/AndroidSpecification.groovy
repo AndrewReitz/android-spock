@@ -20,6 +20,7 @@ import org.spockframework.mock.MockImplementation
 import org.spockframework.mock.MockNature
 import org.spockframework.mock.runtime.MockConfiguration
 import org.spockframework.runtime.GroovyRuntimeUtil
+import org.spockframework.util.Nullable
 import spock.lang.Specification
 
 import java.lang.reflect.Type
@@ -32,11 +33,10 @@ import java.lang.reflect.Type
  */
 abstract class AndroidSpecification extends Specification {
   // Note to self. This MUST be a groovy class. If java it will not run some some reason.
-  @Override Object createMock(String name, Type type, MockNature nature, MockImplementation implementation,
-      Map<String, Object> options, Closure closure) {
-    Object mock = AndroidMockFactory.INSTANCE.create(new MockConfiguration(name, type, nature,
-        implementation, options), this)
-
+  @Override Object createMock(@Nullable String name, Object instance, Type type, MockNature nature,
+      MockImplementation implementation, Map<String, Object> options, @Nullable Closure closure) {
+    def mock = AndroidMockFactory.INSTANCE.create(
+        new MockConfiguration(name, type, instance, nature, implementation, options), this)
     if (closure != null) {
       GroovyRuntimeUtil.invokeClosure(closure, mock)
     }

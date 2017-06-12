@@ -1,7 +1,6 @@
 # Spock for Android
 
-[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=583c48ac3f7e8e0100bc315b&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/583c48ac3f7e8e0100bc315b/build/latest)
-[![Build Status](https://travis-ci.org/pieces029/android-spock.svg?branch=master)](https://travis-ci.org/pieces029/android-spock)
+[![Build Status](https://travis-ci.org/andrewreitz/android-spock.svg?branch=master)](https://travis-ci.org/andrewreitz/android-spock)
 
 
 This library allows for the [Spock Framework](//spockframework.org) mocks to be used on Android. As
@@ -18,7 +17,7 @@ buildscript {
   }
 
   dependencies {
-     classpath 'com.android.tools.build:gradle:2.2.2'
+     classpath 'com.android.tools.build:gradle:2.3.2'
      classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.1.0'
   }
 }
@@ -28,14 +27,13 @@ apply plugin: 'groovyx.android'
 ```
 
 See [groovy-android-gradle-plugin](//github.com/groovy/groovy-android-gradle-plugin) for more
-details.
+information on setting this plugin up.
 
 ### Setup Dependencies
 
 ```groovy
 dependencies {
   ...
-  androidTestCompile 'org.codehaus.groovy:groovy:2.4.7:grooid'
   androidTestCompile "com.andrewreitz:spock-android:${androidSpockVersion}"
   ...
 }
@@ -68,13 +66,13 @@ Write your tests like you would regular spock tests. See the spock-android-sampl
 
 ### Mocking
 
-Objenesis and cglib do not work with Android. But that's okay. Using dexmaker we can still create
+Objenesis and cglib do not work with Android. But that's okay, using dexmaker we can still create
 mock objects in spock fashion. The only difference is instead of your test classes inheriting from
 `Specification`, you need to inherit from `AndroidSpecification`.
 
-Note: You can not use mocked automatic getters and setters. Example `mocked.getString()` will work
-where as `mocked.string` will not. This is due to limitations of Android not containing certain core
-java classes.
+**Note**: You can not use mocked automatic getters and setters. Example `mocked.getName()` will work
+where as `mocked.name` will not. This is due to limitations of Android not having the `java.bean`
+package available.
 
 ### Annotations
 
