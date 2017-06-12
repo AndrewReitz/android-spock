@@ -20,6 +20,7 @@ android {
 
   packagingOptions {
     exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
+    exclude 'META-INF/LICENSE'
     exclude 'LICENSE.txt'
   }
 

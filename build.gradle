@@ -16,7 +16,7 @@ buildscript {
 
   dependencies {
     classpath 'com.android.tools.build:gradle:2.3.2'
-    classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.1.0'
+    classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.2.0'
     classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:3.2.0'
     classpath 'com.github.ben-manes:gradle-versions-plugin:0.15.0'
@@ -24,7 +24,7 @@ buildscript {
 }
 
 allprojects {
-  version = '2.0.0-SNAPSHOT'
+  version = '2.0.0'
   group = "com.andrewreitz"
 
   repositories {
