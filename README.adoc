@@ -1,9 +1,11 @@
 = Spock for Android
 :androidGradlePluginVersion: 2.3.2
-:groovyGradlePluginVerson: 1.2.0
+:groovyGradlePluginVersion: 1.2.0
 :spockAndroidVersion: 2.0
 
-image::https://travis-ci.org/andrewreitz/android-spock.svg?branch=master[Build Status, link=https://travis-ci.org/andrewreitz/android-spock]
+image:https://travis-ci.org/AndrewReitz/android-spock.svg?branch=master["Build Status", link="https://travis-ci.org/AndrewReitz/android-spock"]
+
+image::https://dashboard.buddybuild.com/api/statusImage?appID=593efce38894330001ab3b5e&branch=master&build=latest[BuddyBuild, link="https://dashboard.buddybuild.com/apps/593efce38894330001ab3b5e/build/latest?branch=master"]
 
 This library allows for the http//spockframework.org[Spock Framework] mocks to
 be used on Android. As well as add some helpful features to make Android
@@ -13,7 +15,7 @@ testing easier.
 
 === Setup Groovy For Android
 
-[source, groovy]
+[source, groovy, subs='attributes']
 ----
 buildscript {
   repositories {
@@ -22,7 +24,7 @@ buildscript {
 
   dependencies {
      classpath 'com.android.tools.build:gradle:{androidGradlePluginVersion}'
-     classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:{groovyGradlePluginVerson}'
+     classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:{groovyGradlePluginVersion}'
   }
 }
 
@@ -35,7 +37,7 @@ information on setting this plugin up.
 
 === Setup Dependencies
 
-[source, groovy]
+[source, groovy, subs='attributes']
 ----
 dependencies {
   ...
@@ -57,8 +59,7 @@ android {
   }
 
   packagingOptions {
-    exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
-    exclude 'LICENSE.txt'
+    exclude 'META-INF/LICENSE'
   }
 }
 ----
@@ -68,7 +69,7 @@ android {
 Tests must be placed in the `./src/androidTest/groovy` directory.
 
 Write your tests like you would regular spock tests. See the spock-android-sample project and
-[Spock Framework](//spockframework.org) for more details.
+http://spockframework.org[Spock Framework] for more details.
 
 === Mocking
 
@@ -116,6 +117,8 @@ All field annotations will be set during the setup fixture.
 - Android Studio can not run tests with spaces in the name. This is due to a limitation
 with how it tells the Android device how to run them. To get around this you can
 name tests without spaces. EX: "this_is_my_test" or just run them in gradle with `gradle connectedAndroidTest`.
+- Spock includes some references to Java packages that are not included in Android. You may need to use
+`lintOptions { disable 'InvalidPackage' }` to avoid lint failures.
 
 == License
 

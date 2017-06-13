@@ -20,13 +20,12 @@ android {
   }
 
   lintOptions {
-    abortOnError false
+    abortOnError true
+    disable 'InvalidPackage'
   }
 
   packagingOptions {
-    exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
     exclude 'META-INF/LICENSE'
-    exclude 'LICENSE.txt'
   }
 
   dexOptions {
