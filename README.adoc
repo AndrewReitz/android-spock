@@ -1,0 +1,136 @@
+= Spock for Android
+:androidGradlePluginVersion: 2.3.2
+:groovyGradlePluginVerson: 1.2.0
+:spockAndroidVersion: 2.0
+
+image::https://travis-ci.org/andrewreitz/android-spock.svg?branch=master[Build Status, link=https://travis-ci.org/andrewreitz/android-spock]
+
+This library allows for the http//spockframework.org[Spock Framework] mocks to
+be used on Android. As well as add some helpful features to make Android
+testing easier.
+
+== Usage
+
+=== Setup Groovy For Android
+
+[source, groovy]
+----
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+     classpath 'com.android.tools.build:gradle:{androidGradlePluginVersion}'
+     classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:{groovyGradlePluginVerson}'
+  }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'groovyx.android'
+----
+
+See https://github.com/groovy/groovy-android-gradle-plugin[groovy-android-gradle-plugin] for more
+information on setting this plugin up.
+
+=== Setup Dependencies
+
+[source, groovy]
+----
+dependencies {
+  ...
+  androidTestCompile "com.andrewreitz:spock-android:{spockAndroidVersion}"
+  ...
+}
+----
+
+=== Setup Android Plugin
+
+[source, groovy]
+----
+android {
+  ...
+
+  defaultConfig {
+    ...
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  packagingOptions {
+    exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
+    exclude 'LICENSE.txt'
+  }
+}
+----
+
+=== Write your tests
+
+Tests must be placed in the `./src/androidTest/groovy` directory.
+
+Write your tests like you would regular spock tests. See the spock-android-sample project and
+[Spock Framework](//spockframework.org) for more details.
+
+=== Mocking
+
+Objenesis and cglib do not work with Android. But that's okay, using dexmaker we can still create
+mock objects in spock fashion. The only difference is instead of your test classes inheriting from
+`Specification`, you need to inherit from `AndroidSpecification`.
+
+**Note**: You can not use mocked automatic getters and setters. Example `mocked.getName()` will work
+where as `mocked.name` will not. This is due to limitations of Android not having the `java.bean`
+package available.
+
+=== Annotations
+
+`UseActivity` is an field annotation to get access to your Activity during tests. You can even
+provide bundle arguments by supplying a BundleCreator.
+
+Ex.
+[source, groovy]
+----
+@UseActivity(MyActivity) def myActivity
+----
+
+`UseApplication` is a field annotation that supplies your Application.
+
+Ex.
+[source, groovy]
+----
+@UseApplication(MyApplication) def myApplication
+----
+
+`WithContext` is a field annotation that supplies you with a context. This is not an implementation of
+your application.
+
+Ex.
+
+[source, groovy]
+----
+@WithContext def context
+----
+
+All field annotations will be set during the setup fixture.
+
+=== Other Notes
+
+- Android Studio can not run tests with spaces in the name. This is due to a limitation
+with how it tells the Android device how to run them. To get around this you can
+name tests without spaces. EX: "this_is_my_test" or just run them in gradle with `gradle connectedAndroidTest`.
+
+== License
+
+====
+Copyright 2017 Andrew Reitz
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+====
