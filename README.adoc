@@ -7,7 +7,7 @@ image:https://travis-ci.org/AndrewReitz/android-spock.svg?branch=master["Build S
 
 image::https://dashboard.buddybuild.com/api/statusImage?appID=593efce38894330001ab3b5e&branch=master&build=latest[BuddyBuild, link="https://dashboard.buddybuild.com/apps/593efce38894330001ab3b5e/build/latest?branch=master"]
 
-This library allows for the http//spockframework.org[Spock Framework] mocks to
+This library allows for the http://spockframework.org[Spock Framework] mocks to
 be used on Android. As well as add some helpful features to make Android
 testing easier.
 
